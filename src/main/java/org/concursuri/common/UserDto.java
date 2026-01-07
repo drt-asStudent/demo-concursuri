@@ -4,15 +4,17 @@ public class UserDto {
     Integer id;
     String nume;
     String prenume;
-    String email;
+    String eMail;
+    Integer telefon;
     Integer varsta;
+    String rol;
 
     public Integer getVarsta() {
         return varsta;
     }
 
     public String getEmail() {
-        return email;
+        return eMail;
     }
 
     public String getPrenume() {
@@ -23,15 +25,25 @@ public class UserDto {
         return nume;
     }
 
+    public Integer getTelefon() {
+        return telefon;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
     public Integer getId() {
         return id;
     }
 
-    public UserDto(Integer id, String nume, String prenume, String email, Integer varsta) {
+    public UserDto(Integer id, String nume, String prenume, String email, Integer telefon, String rol, Integer varsta) {
         this.id = id;
         this.nume = nume;
         this.prenume = prenume;
-        this.email = email;
+        this.eMail = email;
+        this.telefon = telefon;
+        this.rol = rol;
         this.varsta = varsta;
     }
 }

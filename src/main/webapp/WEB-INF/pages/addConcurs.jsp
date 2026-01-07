@@ -10,46 +10,83 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <t:pageTemplate pageTitle="Adăugare  concurs">
-    <h1>Add Car</h1>
+    <h1>Adăugare concurs</h1>
 
-    <form class="needs-validation" novalidate method="POST" action="${pageContext.request.contextPath}/AddCar">
+    <form class="needs-validation" novalidate method="POST" action="${pageContext.request.contextPath}/AddConcurs">
 
-        <!-- 1. License Plate -->
+        <!-- 1. id -->
         <div class="mb-3">
-            <label for="license_plate" class="form-label">License Plate</label>
-            <input type="text" class="form-control" id="license_plate" name="license_plate" required>
+            <label for="id" class="form-label">Nr. crt.</label>
+            <input type="text" class="form-control" id="id" name="id" required>
             <div class="invalid-feedback">
-                License Plate is required.
+                Id-ul trebuie să fie UNIC.
             </div>
         </div>
 
-        <!-- 2. Parking Spot -->
+        <!-- 2. nume -->
         <div class="mb-3">
-            <label for="parking_spot" class="form-label">Parking Spot</label>
-            <input type="text" class="form-control" id="parking_spot" name="parking_spot" required>
+            <label for="nume" class="form-label">Genericul concursului</label>
+            <input type="text" class="form-control" id="nume" name="nume" required>
             <div class="invalid-feedback">
-                Parking Spot is required.
+                Câmpul nume este obligatoriu.
             </div>
         </div>
 
-        <!-- 3. Owner (Dropdown) -->
+        <!-- 3. Data desfășurarii -->
         <div class="mb-3">
-            <label for="owner_id" class="form-label">Owner</label>
-            <select class="form-select" id="owner_id" name="owner_id" required>
-                <option value="">Choose...</option>
-
-                    <%-- PASUL B: Aici am pus bucla care ia utilizatorii din Java și îi pune în listă --%>
-                <c:forEach items="${users}" var="user">
-                    <option value="${user.id}">${user.username}</option>
-                </c:forEach>
-
-            </select>
+            <label for="dataDesfasurare" class="form-label">Data desfășurarii</label>
+            <input type="date" class="form-control" id="dataDesfasurare" name="dataDesfasurare" required>
             <div class="invalid-feedback">
-                Please select an owner.
+                Câmpul dataDesfasurare este obligatoriu.
             </div>
         </div>
 
-        <!-- 4. Save Button -->
+        <!-- 4. Începere înscriere -->
+        <div class="mb-3">
+            <label for="startInscrieri" class="form-label">Începere înscriere</label>
+            <input type="date" class="form-control" id="startInscrieri" name="startInscrieri" required>
+            <div class="invalid-feedback">
+                Câmpul startInscrieri este obligatoriu.
+            </div>
+        </div>
+
+        <!-- 5. Sfârșit înscriere -->
+        <div class="mb-3">
+            <label for="stopInscrieri" class="form-label">Sfârșit înscriere</label>
+            <input type="date" class="form-control" id="stopInscrieri" name="stopInscrieri" required>
+            <div class="invalid-feedback">
+                Câmpul stopInscrieri este obligatoriu.
+            </div>
+        </div>
+
+        <!-- 6. isSoftware -->
+        <div class="mb-3">
+            <label for="isSoftware" class="form-label">Domeniul software?</label>
+            <input type="number" class="form-control" id="isSoftware" name="isSoftware" required>
+            <div class="invalid-feedback">
+                Câmpul isSoftware este obligatoriu.
+            </div>
+        </div>
+
+        <!-- 7. isHardware -->
+        <div class="mb-3">
+            <label for="isHardware" class="form-label">Domeniul hardware?</label>
+            <input type="number" class="form-control" id="isHardware" name="isHardware" required>
+            <div class="invalid-feedback">
+                Câmpul isHardware este obligatoriu.
+            </div>
+        </div>
+
+        <!-- 8. nivel -->
+        <div class="mb-3">
+            <label for="nivel" class="form-label">Nivel recomandat?</label>
+            <input type="text" class="form-control" id="nivel" name="nivel" required>
+            <div class="invalid-feedback">
+                Câmpul isHardware este obligatoriu.
+            </div>
+        </div>
+
+        <!-- 9. Save Button -->
         <button type="submit" class="btn btn-primary">Save</button>
 
     </form>

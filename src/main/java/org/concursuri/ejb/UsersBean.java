@@ -38,10 +38,16 @@ public class UsersBean {
                     user.getNume(),
                     user.getPrenume(),
                     user.getEMail(),
+                    user.getTelefon(),
+                    user.getRol(),
                     user.getVarsta()
             );
             carDtos.add(dto);
         }
         return carDtos;
+    }
+
+    public void createUser(Integer id, String nume, String prenume, String eMail, Integer telefon, String rol, Integer varsta) {
+        User user = new User(id,nume,prenume,eMail,telefon,rol,varsta);
     }
 }

@@ -20,6 +20,9 @@ public class Concursuri {
     @Column(name = "start_inscrieri")
     private Date startInscrieri;
 
+    @Column(name = "stop_inscrieri")
+    private Date stopInscrieri;
+
     @Column(name = "is_software")
     private Boolean isSoftware;
 
@@ -63,8 +66,7 @@ public class Concursuri {
         this.startInscrieri = startInscrieri;
     }
 
-    @Column(name = "stop_inscrieri")
-    private Date stopInscrieri;
+
 
     public Date getDataDesfasurare() {
         return dataDesfasurare;

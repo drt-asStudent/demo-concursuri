@@ -11,6 +11,7 @@ import org.concursuri.entities.Concursuri;
 import org.concursuri.entities.User;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -48,5 +49,10 @@ public class ConcursBean {
             concursDtos.add(dto);
         }
         return concursDtos;
+    }
+
+    public void createConcurs(Integer id, String nume, Date dataDesfasurare, Date startInscrieri, Date stopInscrieri, Boolean isSoftware, Boolean isHardware, String nivel) {
+        Concursuri concurs = new Concursuri(id, nume, dataDesfasurare, startInscrieri, stopInscrieri, isSoftware, isHardware, nivel);
+        entityManager.persist(concurs);
     }
 }

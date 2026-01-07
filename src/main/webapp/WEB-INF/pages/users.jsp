@@ -3,28 +3,39 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <t:pageTemplate pageTitle="USERS">
-    <h1>These are the users</h1>
-    <div class="container text-center">
-        <c:forEach var="user" items="${users}">
-            <div class="row">
-                <div class="col">
-                    ${user.id}
-                </div>
-                <div class="col">
-                    ${user.nume}
-                </div>
-                <div class="col">
-                        ${user.prenume}
-                </div>
-                <div class="col">
-                    ${user.email}
-                </div>
-                <div class="col">
-                    ${user.varsta}
-                </div>
-            </div>
-        </c:forEach>
+    <h1>Users List</h1>
 
+    <a href="${pageContext.request.contextPath}/AddConcurs"
+       class="btn btn-primary btn-lg mb-3">
+        Adăugare utilizator
+    </a>
 
+    <div class="container mt-4">
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="table-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Telefon</th>
+                <th scope="col">Rol</th>
+                <th scope="col">Age</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="user" items="${users}">
+                <tr>
+                    <td>${user.id}</td>
+                    <td>${user.nume}</td>
+                    <td>${user.prenume}</td>
+                    <td>${user.email}</td>
+                    <td>${user.telefon}</td>
+                    <td>${user.rol}</td>
+                    <td>${user.varsta}</td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
     </div>
 </t:pageTemplate>

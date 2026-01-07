@@ -14,7 +14,7 @@ public class User {
     private String eMail;
 
     @Column(name = "telefon")
-    private Long telefon;
+    private Integer telefon;
 
     @Column(name = "varsta")
     private Integer varsta;
@@ -31,6 +31,16 @@ public class User {
     @Column(name = "nume", length = 25)
     private String nume;
 
+    public User(Integer id, String nume, String prenume, String eMail, Integer telefon, String rol, Integer varsta) {
+    this.id = id;
+    this.nume = nume;
+    this.prenume = prenume;
+    this.eMail = eMail;
+    this.telefon = telefon;
+    this.rol = rol;
+    this.varsta = varsta;
+    }
+
     public String getEMail() {
         return eMail;
     }
@@ -39,11 +49,11 @@ public class User {
         this.eMail = eMail;
     }
 
-    public Long getTelefon() {
+    public Integer getTelefon() {
         return telefon;
     }
 
-    public void setTelefon(Long telefon) {
+    public void setTelefon(Integer telefon) {
         this.telefon = telefon;
     }
 
@@ -95,4 +105,5 @@ public class User {
         this.id = id;
     }
 
+    public User(){}
 }
