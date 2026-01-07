@@ -26,11 +26,11 @@
                         </a>
                     </li>
 
-                    <!-- CARS -->
+                    <!-- CONCURSURI -->
                     <li class="nav-item">
-                        <a class="nav-link ${activePage eq 'Cars' ? 'active' : ''}"
+                        <a class="nav-link ${activePage eq 'Concursuri' ? 'active' : ''}"
                            aria-current="page"
-                           href="${pageContext.request.contextPath}/Cars">
+                           href="${pageContext.request.contextPath}/Concursuri">
                             HELL'S BELLS
                         </a>
                     </li>
