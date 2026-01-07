@@ -26,6 +26,9 @@ public class Concursuri {
     @Column(name = "is_hardware")
     private Boolean isHardware;
 
+    @Column(name = "nivel")
+    private String nivel;
+
     public Boolean getSoftware() {
         return isSoftware;
     }
@@ -77,6 +80,7 @@ public class Concursuri {
     public Integer getId() {
         return id;
     }
+
     public String getNume() {
         return nume;
     }
@@ -85,15 +89,26 @@ public class Concursuri {
         this.nume = nume;
     }
 
+    public String getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(String nivel) {
+        this.nivel = nivel;
+    }
+
     public Concursuri() {
 
     }
 
-    public Concursuri(Integer id, String nume, Date dataDesfasurare, Date startInscrieri, Date stopInscrieri) {
+    public Concursuri(Integer id, String nume, Date dataDesfasurare, Date startInscrieri, Date stopInscrieri, Boolean isSoftware, Boolean isHardware, String nivel) {
         this.id = id;
         this.nume = nume;
         this.dataDesfasurare = dataDesfasurare;
         this.startInscrieri = startInscrieri;
         this.stopInscrieri = stopInscrieri;
+        this.isSoftware = isSoftware;
+        this.isHardware = isHardware;
+        this.nivel = nivel;
     }
 }

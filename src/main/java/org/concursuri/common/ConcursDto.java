@@ -10,6 +10,11 @@ public class ConcursDto {
     Date stopInscrieri;
     Boolean isSoftware;
     Boolean isHardware;
+    String nivel;
+
+    public String getNivel() {
+        return nivel;
+    }
 
     public Integer getId() {
         return id;
@@ -39,7 +44,7 @@ public class ConcursDto {
         return isHardware;
     }
 
-    public ConcursDto(Integer id, String nume, Date dataDesfasurare, Date startInscrieri, Date stopInscrieri, Boolean isSoftware, Boolean isHardware) {
+    public ConcursDto(Integer id, String nume, Date dataDesfasurare, Date startInscrieri, Date stopInscrieri, Boolean isSoftware, Boolean isHardware, String nivel) {
         this.id = id;
         this.nume = nume;
         this.dataDesfasurare = dataDesfasurare;
@@ -47,6 +52,6 @@ public class ConcursDto {
         this.stopInscrieri = stopInscrieri;
         this.isSoftware = isSoftware;
         this.isHardware = isHardware;
-
+        this.nivel = nivel;
     }
 }

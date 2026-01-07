@@ -42,7 +42,8 @@ public class ConcursBean {
                     cx.getStartInscrieri(),
                     cx.getStopInscrieri(),
                     cx.getSoftware(),
-                    cx.getHardware()
+                    cx.getHardware(),
+                    cx.getNivel()
             );
             concursDtos.add(dto);
         }

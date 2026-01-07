@@ -12,6 +12,34 @@
 <t:pageTemplate pageTitle="CONCURSURI">
     <h1>COMPETITIONS IN EFFECT</h1>
     <div class="container text-center">
+
+        <div class="row">
+            <div class="col">
+                Nr. crt.
+            </div>
+            <div class="col">
+                Nume proiect
+            </div>
+            <div class="col">
+                Data desfășurării
+            </div>
+            <div class="col">
+                Începere înscrieri
+            </div>
+            <div class="col">
+                Deadline înscrieri
+            </div>
+            <div class="col">
+                Tematică software
+            </div>
+            <div class="col">
+                Tematică hardware
+            </div>
+            <div class="col">
+                Nivel
+            </div>
+        </div>
+
         <c:forEach var="concursuri" items="${concursuri}">
             <div class="row">
                 <div class="col">
@@ -34,6 +62,9 @@
                 </div>
                 <div class="col">
                         ${concursuri.isHardware}
+                </div>
+                <div class="col">
+                        ${concursuri.nivel}
                 </div>
             </div>
         </c:forEach>
