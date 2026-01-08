@@ -49,5 +49,6 @@ public class UsersBean {
 
     public void createUser(Integer id, String nume, String prenume, String eMail, Integer telefon, String rol, Integer varsta) {
         User user = new User(id,nume,prenume,eMail,telefon,rol,varsta);
+        entityManager.persist(user);
     }
 }

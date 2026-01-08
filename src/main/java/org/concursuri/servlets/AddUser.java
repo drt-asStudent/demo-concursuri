@@ -18,8 +18,8 @@ public class AddUser extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<UserDto> concursuri = usersBean.findAllUsers();
-        request.setAttribute("users", concursuri);
+        List<UserDto> users = usersBean.findAllUsers();
+        request.setAttribute("users", users );
         request.getRequestDispatcher("/WEB-INF/pages/addUser.jsp").forward(request,response);
     }
 
@@ -34,6 +34,6 @@ public class AddUser extends HttpServlet {
         String rol = request.getParameter("rol");
 
         usersBean.createUser(id, nume, prenume, eMail, telefon, rol, varsta);
-        response.sendRedirect(request.getContextPath() + "/AddUser");
+        response.sendRedirect(request.getContextPath() + "/Users");
     }
 }

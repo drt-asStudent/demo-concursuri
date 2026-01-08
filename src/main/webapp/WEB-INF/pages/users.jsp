@@ -5,7 +5,7 @@
 <t:pageTemplate pageTitle="USERS">
     <h1>Users List</h1>
 
-    <a href="${pageContext.request.contextPath}/AddConcurs"
+    <a href="${pageContext.request.contextPath}/AddUser"
        class="btn btn-primary btn-lg mb-3">
         Adăugare utilizator
     </a>
