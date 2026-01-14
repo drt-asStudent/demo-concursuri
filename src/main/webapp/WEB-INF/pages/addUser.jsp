@@ -77,6 +77,15 @@
             </div>
         </div>
 
+        <!-- 8. bday -->
+        <div class="mb-3">
+            <label for="bday" class="form-label">Data desfășurarii</label>
+            <input type="date" class="form-control" id="bday" name="bday" required>
+            <div class="invalid-feedback">
+                Câmpul bday este obligatoriu.
+            </div>
+        </div>
+
         <!-- 9. Save Button -->
         <button type="submit" class="btn btn-primary">Save</button>
 

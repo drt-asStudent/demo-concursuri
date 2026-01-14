@@ -2,6 +2,8 @@ package org.concursuri.entities;
 
 import jakarta.persistence.*;
 
+import java.sql.Date;
+
 @Entity
 @Table(name = "user")
 public class User {
@@ -31,7 +33,18 @@ public class User {
     @Column(name = "nume", length = 25)
     private String nume;
 
-    public User(Integer id, String nume, String prenume, String eMail, Integer telefon, String rol, Integer varsta) {
+    public Date getBday() {
+        return bday;
+    }
+
+    public void setBday(Date bday) {
+        this.bday = bday;
+    }
+
+    @Column(name = "bday")
+    private Date bday;
+
+    public User(Integer id, String nume, String prenume, String eMail, Integer telefon, String rol, Integer varsta, Date bday) {
     this.id = id;
     this.nume = nume;
     this.prenume = prenume;
@@ -39,6 +52,7 @@ public class User {
     this.telefon = telefon;
     this.rol = rol;
     this.varsta = varsta;
+    this.bday = bday;
     }
 
     public String getEMail() {

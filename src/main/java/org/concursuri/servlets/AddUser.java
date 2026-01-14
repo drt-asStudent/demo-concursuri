@@ -9,6 +9,7 @@ import org.concursuri.common.UserDto;
 import org.concursuri.ejb.UsersBean;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 
 @WebServlet(name = "AddUser", value = "/AddUser")
@@ -32,8 +33,10 @@ public class AddUser extends HttpServlet {
         Integer telefon = request.getParameter("telefon") == null ? null : Integer.parseInt(request.getParameter("telefon"));
         Integer varsta = Integer.parseInt(request.getParameter("varsta"));
         String rol = request.getParameter("rol");
+        //Date bday = (bdayString != null && !bdayString.isEmpty()) ? Date.valueOf(bdayString) : null;
+        java.sql.Date bday = java.sql.Date.valueOf(request.getParameter("bday"));
 
-        usersBean.createUser(id, nume, prenume, eMail, telefon, rol, varsta);
+        usersBean.createUser(id, nume, prenume, eMail, telefon, rol, varsta, bday);
         response.sendRedirect(request.getContextPath() + "/Users");
     }
 }

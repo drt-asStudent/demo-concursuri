@@ -15,11 +15,11 @@
             <thead class="table-dark">
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Last Name</th>
                 <th scope="col">First Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Telefon</th>
-                <th scope="col">Rol</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">e-Mail</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Status</th>
                 <th scope="col">Age</th>
             </tr>
             </thead>
@@ -27,8 +27,8 @@
             <c:forEach var="user" items="${users}">
                 <tr>
                     <td>${user.id}</td>
-                    <td>${user.nume}</td>
                     <td>${user.prenume}</td>
+                    <td>${user.nume}</td>
                     <td>${user.email}</td>
                     <td>${user.telefon}</td>
                     <td>${user.rol}</td>

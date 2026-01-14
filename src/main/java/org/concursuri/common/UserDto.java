@@ -1,5 +1,7 @@
 package org.concursuri.common;
 
+import java.sql.Date;
+
 public class UserDto {
     Integer id;
     String nume;
@@ -8,6 +10,7 @@ public class UserDto {
     Integer telefon;
     Integer varsta;
     String rol;
+    Date bday;
 
     public Integer getVarsta() {
         return varsta;
@@ -37,7 +40,11 @@ public class UserDto {
         return id;
     }
 
-    public UserDto(Integer id, String nume, String prenume, String email, Integer telefon, String rol, Integer varsta) {
+    public Date getBday() {
+        return bday;
+    }
+
+    public UserDto(Integer id, String nume, String prenume, String email, Integer telefon, String rol, Integer varsta, Date bday) {
         this.id = id;
         this.nume = nume;
         this.prenume = prenume;
@@ -45,5 +52,6 @@ public class UserDto {
         this.telefon = telefon;
         this.rol = rol;
         this.varsta = varsta;
+        this.bday = null;
     }
 }

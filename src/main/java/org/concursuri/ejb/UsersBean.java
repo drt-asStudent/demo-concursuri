@@ -3,6 +3,7 @@ package org.concursuri.ejb;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.Stateless;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -40,15 +41,16 @@ public class UsersBean {
                     user.getEMail(),
                     user.getTelefon(),
                     user.getRol(),
-                    user.getVarsta()
+                    user.getVarsta(),
+                    user.getBday()
             );
             carDtos.add(dto);
         }
         return carDtos;
     }
 
-    public void createUser(Integer id, String nume, String prenume, String eMail, Integer telefon, String rol, Integer varsta) {
-        User user = new User(id,nume,prenume,eMail,telefon,rol,varsta);
+    public void createUser(Integer id, String nume, String prenume, String eMail, Integer telefon, String rol, Integer varsta, Date bday) {
+        User user = new User(id,nume,prenume,eMail,telefon,rol,varsta,bday);
         entityManager.persist(user);
     }
 }
