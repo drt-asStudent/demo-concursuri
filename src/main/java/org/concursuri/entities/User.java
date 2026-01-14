@@ -16,7 +16,7 @@ public class User {
     private String eMail;
 
     @Column(name = "telefon")
-    private Integer telefon;
+    private String telefon;
 
     @Column(name = "varsta")
     private Integer varsta;
@@ -33,6 +33,9 @@ public class User {
     @Column(name = "nume", length = 25)
     private String nume;
 
+    @Column(name = "accepted")
+    private Boolean accepted;
+
     public Date getBday() {
         return bday;
     }
@@ -41,10 +44,18 @@ public class User {
         this.bday = bday;
     }
 
+    public Boolean getAccepted() {
+        return accepted;
+    }
+
+    public void setAccepted(Boolean accepted) {
+        this.accepted = accepted;
+    }
+
     @Column(name = "bday")
     private Date bday;
 
-    public User(Integer id, String nume, String prenume, String eMail, Integer telefon, String rol, Integer varsta, Date bday) {
+    public User(Integer id, String nume, String prenume, String eMail, String telefon, String rol, Integer varsta, Date bday, Boolean accepted) {
     this.id = id;
     this.nume = nume;
     this.prenume = prenume;
@@ -53,6 +64,7 @@ public class User {
     this.rol = rol;
     this.varsta = varsta;
     this.bday = bday;
+    this.accepted = accepted;
     }
 
     public String getEMail() {
@@ -63,11 +75,11 @@ public class User {
         this.eMail = eMail;
     }
 
-    public Integer getTelefon() {
+    public String getTelefon() {
         return telefon;
     }
 
-    public void setTelefon(Integer telefon) {
+    public void setTelefon(String telefon) {
         this.telefon = telefon;
     }
 

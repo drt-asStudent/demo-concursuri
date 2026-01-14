@@ -21,9 +21,24 @@ public class UsersBean {
     EntityManager entityManager;
 
     public List<UserDto> findAllUsers() {
-        LOG.info("Find all users");
+        LOG.info("Find accepted users");
         try {
-            TypedQuery<User> query = entityManager.createQuery("SELECT u FROM User u", User.class);
+            TypedQuery<User> query = entityManager.createQuery(
+                    "SELECT u FROM User u WHERE u.rol IN ('elev', 'student') AND u.accepted = true",
+                    User.class);
+            List<User> users = query.getResultList();
+            return copyUsersToDTO(users);
+        } catch (Exception e) {
+            throw new EJBException(e);
+        }
+    }
+
+    public List<UserDto> findApplying() {
+        LOG.info("Find applying users");
+        try {
+            TypedQuery<User> query = entityManager.createQuery(
+                    "SELECT u FROM User u WHERE u.rol IN ('elev', 'student') AND (u.accepted = false OR u.accepted IS NULL)",
+                    User.class);
             List<User> users = query.getResultList();
             return copyUsersToDTO(users);
         } catch (Exception e) {
@@ -32,7 +47,7 @@ public class UsersBean {
     }
 
     private List<UserDto> copyUsersToDTO(List<User> users) {
-        List<UserDto> carDtos = new ArrayList<>();
+        List<UserDto> usersDtos = new ArrayList<>();
         for (User user : users) {
             UserDto dto = new UserDto(
                     user.getId(),
@@ -42,15 +57,23 @@ public class UsersBean {
                     user.getTelefon(),
                     user.getRol(),
                     user.getVarsta(),
-                    user.getBday()
+                    user.getBday(),
+                    user.getAccepted()
             );
-            carDtos.add(dto);
+            usersDtos.add(dto);
         }
-        return carDtos;
+        return usersDtos;
     }
 
-    public void createUser(Integer id, String nume, String prenume, String eMail, Integer telefon, String rol, Integer varsta, Date bday) {
-        User user = new User(id,nume,prenume,eMail,telefon,rol,varsta,bday);
+    public void createUser(Integer id, String nume, String prenume, String eMail, String telefon, String rol, Integer varsta, Date bday, Boolean accepted) {
+        User user = new User(id,nume,prenume,eMail,telefon,rol,varsta,bday,accepted);
         entityManager.persist(user);
+    }
+    public void acceptUser(Integer userId) {
+        LOG.info("Accepting user with id: " + userId);
+        User user = entityManager.find(User.class, userId);
+        if (user != null) {
+            user.setAccepted(true);
+        }
     }
 }

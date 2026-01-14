@@ -30,13 +30,13 @@ public class AddUser extends HttpServlet {
         String nume = request.getParameter("nume");
         String prenume = request.getParameter("prenume");
         String eMail = request.getParameter("eMail");
-        Integer telefon = request.getParameter("telefon") == null ? null : Integer.parseInt(request.getParameter("telefon"));
+        String telefon = request.getParameter("telefon");
         Integer varsta = Integer.parseInt(request.getParameter("varsta"));
         String rol = request.getParameter("rol");
         //Date bday = (bdayString != null && !bdayString.isEmpty()) ? Date.valueOf(bdayString) : null;
         java.sql.Date bday = java.sql.Date.valueOf(request.getParameter("bday"));
 
-        usersBean.createUser(id, nume, prenume, eMail, telefon, rol, varsta, bday);
+        usersBean.createUser(id, nume, prenume, eMail, telefon, rol, varsta, bday, true);
         response.sendRedirect(request.getContextPath() + "/Users");
     }
 }
