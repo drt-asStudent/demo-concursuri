@@ -1,7 +1,7 @@
 package org.concursuri.entities;
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Table(name = "concursuri")

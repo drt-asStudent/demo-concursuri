@@ -11,7 +11,7 @@ import org.concursuri.entities.Concursuri;
 import org.concursuri.entities.User;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.logging.Logger;
 

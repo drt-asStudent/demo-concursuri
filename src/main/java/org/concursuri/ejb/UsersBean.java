@@ -49,7 +49,7 @@ public class UsersBean {
     private List<UserDto> copyUsersToDTO(List<User> users) {
         List<UserDto> usersDtos = new ArrayList<>();
         for (User user : users) {
-            UserDto dto = new UserDto(
+            UserDto shittyUserDto = new UserDto(
                     user.getId(),
                     user.getNume(),
                     user.getPrenume(),
@@ -60,7 +60,7 @@ public class UsersBean {
                     user.getBday(),
                     user.getAccepted()
             );
-            usersDtos.add(dto);
+            usersDtos.add(shittyUserDto);
         }
         return usersDtos;
     }
@@ -69,6 +69,7 @@ public class UsersBean {
         User user = new User(id,nume,prenume,eMail,telefon,rol,varsta,bday,accepted);
         entityManager.persist(user);
     }
+
     public void acceptUser(Integer userId) {
         LOG.info("Accepting user with id: " + userId);
         User user = entityManager.find(User.class, userId);

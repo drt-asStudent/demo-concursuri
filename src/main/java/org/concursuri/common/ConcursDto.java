@@ -1,6 +1,6 @@
 package org.concursuri.common;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class ConcursDto {
     Integer id;
@@ -24,7 +24,7 @@ public class ConcursDto {
         return nume;
     }
 
-    public Date getDataDesfasurare() {
+    public java.sql.Date getDataDesfasurare() {
         return dataDesfasurare;
     }
 
