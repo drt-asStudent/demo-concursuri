@@ -6,12 +6,10 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import org.concursuri.common.ConcursDto;
-import org.concursuri.common.UserDto;
 import org.concursuri.entities.Concursuri;
-import org.concursuri.entities.User;
 
-import java.util.ArrayList;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 

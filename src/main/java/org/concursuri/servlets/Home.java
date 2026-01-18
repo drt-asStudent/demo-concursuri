@@ -1,5 +1,6 @@
 package org.concursuri.servlets;
 
+import jakarta.ejb.EJB;
 import jakarta.inject.Inject;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -15,7 +16,7 @@ import java.util.List;
 @WebServlet(name = "Home", value = "")
 public class Home extends HttpServlet {
 
-    @Inject
+    @EJB
     ConcursBean concursBean;
 
     @Override
