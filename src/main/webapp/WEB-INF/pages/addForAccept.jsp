@@ -22,7 +22,7 @@
                 <th scope="col">e-Mail</th>
                 <th scope="col">Phone</th>
                 <th scope="col">Status</th>
-                <th scope="col">Age</th>
+
                 <th scope="col">Accept</th>
             </tr>
             </thead>
@@ -35,7 +35,7 @@
                     <td>${user.email}</td>
                     <td>${user.telefon}</td>
                     <td>${user.rol}</td>
-                    <td>${user.varsta}</td>
+
                     <td>
                         <form method="POST" action="${pageContext.request.contextPath}/AddAcceptUsers">
                             <input type="hidden" name="user_id" value="${user.id}">

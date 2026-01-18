@@ -41,14 +41,28 @@
             </div>
         </div>
 
-
-
         <!-- 4. email -->
         <div class="mb-3">
             <label for="eMail" class="form-label">eMail</label>
             <input type="text" class="form-control" id="eMail" name="eMail" required>
             <div class="invalid-feedback">
                 Câmpul eMail este obligatoriu.
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="username" class="form-label">Nume</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+            <div class="invalid-feedback">
+                Câmpul nume este obligatoriu.
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Nume</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+            <div class="invalid-feedback">
+                Câmpul nume este obligatoriu.
             </div>
         </div>
 

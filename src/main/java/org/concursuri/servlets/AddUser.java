@@ -30,13 +30,15 @@ public class AddUser extends HttpServlet {
         String nume = request.getParameter("nume");
         String prenume = request.getParameter("prenume");
         String eMail = request.getParameter("eMail");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
         String telefon = request.getParameter("telefon");
         /*Integer varsta = Integer.parseInt(request.getParameter("varsta"));*/
         String rol = request.getParameter("rol");
         //Date bday = (bdayString != null && !bdayString.isEmpty()) ? Date.valueOf(bdayString) : null;
         java.sql.Date bday = java.sql.Date.valueOf(request.getParameter("bday"));
 
-        usersBean.createUser(nume, prenume, eMail, telefon, rol, /*varsta,*/ bday, false);
+        usersBean.createUser(nume, prenume, eMail, username, password, telefon, rol, /*varsta,*/ bday, false);
         response.sendRedirect(request.getContextPath() + "/Users");
     }
 }

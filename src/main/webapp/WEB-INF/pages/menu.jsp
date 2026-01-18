@@ -1,6 +1,6 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<header data-bs-theme="dark">
+<header data-bs-theme="dark" class="navbar navbar-dark bg-dark fixed-top shadow">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container-fluid">
 
@@ -47,7 +47,14 @@
                     <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
                     <li class="nav-item"><a class="nav-link disabled" aria-disabled="true">Disabled</a></li>
 
-
+                    <!-- Login (adăugat corect ca și Cars) -->
+                    <li class="nav-item">
+                        <a class="nav-link ${activePage eq 'Login' ? 'active' : ''}"
+                           aria-current="page"
+                           href="${pageContext.request.contextPath}/Login">
+                            Login
+                        </a>
+                    </li>
 
                 </ul>
             </div>

@@ -33,6 +33,19 @@ public class UsersBean {
         }
     }
 
+    public List<UserDto> findAllOrganizers() {
+        LOG.info("Find applying organizator");
+        try {
+            TypedQuery<User> query = entityManager.createQuery(
+                    "SELECT u FROM User u WHERE u.rol IN ('organizator') AND (u.accepted = false OR u.accepted IS NULL)",
+                    User.class);
+            List<User> users = query.getResultList();
+            return copyUsersToDTO(users);
+        } catch (Exception e) {
+            throw new EJBException(e);
+        }
+    }
+
     public List<UserDto> findApplying() {
         LOG.info("Find applying users");
         try {
@@ -53,7 +66,9 @@ public class UsersBean {
                     user.getId(),
                     user.getNume(),
                     user.getPrenume(),
-                    user.getEMail(),
+                    user.geteMail(),
+                    user.getUsername(),
+                    user.getPassword(),
                     user.getTelefon(),
                     user.getRol(),
                     user.getBday(),
@@ -64,9 +79,9 @@ public class UsersBean {
         return usersDtos;
     }
 
-    public void createUser(String nume, String prenume, String eMail, String telefon, String rol, Date bday, Boolean accepted) {
+    public void createUser(String nume, String prenume, String eMail, String username, String password, String telefon, String rol, Date bday, Boolean accepted) {
         try {
-            User user = new User(nume, prenume, eMail, telefon, rol, bday, accepted);
+            User user = new User(nume, prenume, eMail, username, password, telefon, rol, bday, accepted);
             entityManager.persist(user);
         } catch (Exception e) {
             LOG.severe("Error creating user: " + e.getMessage());
@@ -79,6 +94,36 @@ public class UsersBean {
         User user = entityManager.find(User.class, userId);
         if (user != null) {
             user.setAccepted(true);
+        }
+    }
+
+    public void acceptOrganizer(Integer userId) {
+        LOG.info("Accepting organizer with id: " + userId);
+        User user = entityManager.find(User.class, userId);
+        if (user != null) {
+            user.setAccepted(true);
+        }
+    }
+
+    public UserDto verifyUser(String username, String password) {
+        LOG.info("Verifying login for: " + username);
+        try {
+            TypedQuery<User> query = entityManager.createQuery(
+                    "SELECT u FROM User u WHERE u.username = :username AND u.password = :password",
+                    User.class);
+            query.setParameter("username", username);
+            query.setParameter("password", password);
+
+            List<User> users = query.getResultList();
+            if (users.isEmpty()) {
+                return null;
+            }
+
+            // Return the first match (usernames should be unique)
+            User user = users.get(0);
+            return new UserDto(user.getId(), user.getNume(), user.getPrenume(), user.geteMail(), user.getUsername(), user.getPassword(), user.getTelefon(), user.getRol(), user.getBday(), user.getAccepted());
+        } catch (Exception e) {
+            throw new EJBException(e);
         }
     }
 }

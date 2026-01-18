@@ -39,6 +39,44 @@ public class User {
     @Column(name = "bday")
     private Date bday;
 
+    @Column(name = "username", length = 225)
+    private String username;
+    @Column(name = "password", length = 225)
+    private String password;
+
+    public User(String nume, String prenume, String eMail, String username, String password, String telefon, String rol, /*Integer varsta,*/ Date bday, Boolean accepted) {
+    this.nume = nume;
+    this.prenume = prenume;
+    this.eMail = eMail;
+    this.username = username;
+    this.password = password;
+    this.telefon = telefon;
+    this.rol = rol;
+    //this.varsta = varsta;
+    this.bday = bday;
+    this.accepted = accepted;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String geteMail() {
+        return eMail;
+    }
+
     public Date getBday() {
         return bday;
     }
@@ -55,23 +93,7 @@ public class User {
         this.accepted = accepted;
     }
 
-
-    public User(String nume, String prenume, String eMail, String telefon, String rol, /*Integer varsta,*/ Date bday, Boolean accepted) {
-    this.nume = nume;
-    this.prenume = prenume;
-    this.eMail = eMail;
-    this.telefon = telefon;
-    this.rol = rol;
-    //this.varsta = varsta;
-    this.bday = bday;
-    this.accepted = accepted;
-    }
-
-    public String getEMail() {
-        return eMail;
-    }
-
-    public void setEMail(String eMail) {
+    public void seteMail(String eMail) {
         this.eMail = eMail;
     }
 

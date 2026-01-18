@@ -7,6 +7,11 @@ public class UserDto {
     String nume;
     String prenume;
     String eMail;
+
+
+
+    String username;
+    String password;
     String telefon;
     //Integer varsta;
     String rol;
@@ -16,10 +21,6 @@ public class UserDto {
 //    public Integer getVarsta() {
 //        return varsta;
 //    }
-
-    public String getEmail() {
-        return eMail;
-    }
 
     public String getPrenume() {
         return prenume;
@@ -33,6 +34,27 @@ public class UserDto {
         return telefon;
     }
 
+    public UserDto(Integer id, String nume, String prenume, String email, String username, String password, String telefon, String rol, /*Integer varsta,*/ Date bday, Boolean accepted) {
+        this.id = id;
+        this.nume = nume;
+        this.prenume = prenume;
+        this.eMail = email;
+        this.username = username;
+        this.password = password;
+        this.telefon = telefon;
+        this.rol = rol;
+        //this.varsta = varsta;
+        this.bday = null;
+        this.accepted = accepted;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String geteMail() {
+        return eMail;
+    }
     public String getRol() {
         return rol;
     }
@@ -49,15 +71,7 @@ public class UserDto {
         return accepted;
     }
 
-    public UserDto(Integer id, String nume, String prenume, String email, String telefon, String rol, /*Integer varsta,*/ Date bday, Boolean accepted) {
-        this.id = id;
-        this.nume = nume;
-        this.prenume = prenume;
-        this.eMail = email;
-        this.telefon = telefon;
-        this.rol = rol;
-        //this.varsta = varsta;
-        this.bday = null;
-        this.accepted = accepted;
+    public String getPassword() {
+        return password;
     }
 }
