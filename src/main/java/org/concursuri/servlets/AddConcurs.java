@@ -25,7 +25,7 @@ public class AddConcurs extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Integer id = Integer.parseInt(request.getParameter("id"));
+        //Integer id = Integer.parseInt(request.getParameter("id"));
         String nume = request.getParameter("nume");
         //Date dataDesfasurare = new Date(request.getParameter("dataDesfasurare"));
         //Date startInscrieri = new Date(request.getParameter("startInscrieri"));
@@ -45,7 +45,7 @@ public class AddConcurs extends HttpServlet {
 
         String nivel = request.getParameter("nivel");
 
-        concursBean.createConcurs(id, nume, dataDesfasurare, startInscrieri, stopInscrieri, isSoftware, isHardware, nivel);
+        concursBean.createConcurs(nume, dataDesfasurare, startInscrieri, stopInscrieri, isSoftware, isHardware, nivel);
         response.sendRedirect(request.getContextPath() + "/Concursuri");
     }
 }

@@ -25,12 +25,12 @@
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Name</th>
-                <th scope="col">Event Date</th>
+                <th scope="col">Scheduled</th>
                 <th scope="col">Registration Starts</th>
                 <th scope="col">Registration Ends</th>
-                <th scope="col">Software</th>
-                <th scope="col">Hardware</th>
-                <th scope="col">Nivel</th>
+                <th scope="col" class="text-center">Software profile</th>
+                <th scope="col" class="text-center">Hardware profile</th>
+                <th scope="col" class="text-center">Approach level</th>
             </tr>
             </thead>
             <tbody>
@@ -41,9 +41,9 @@
                     <td><fmt:formatDate value="${concursuri.dataDesfasurare}" pattern="EEE yyyy-MM-dd"/></td>
                     <td><fmt:formatDate value="${concursuri.startInscrieri}" pattern="EEE yyyy-MM-dd"/></td>
                     <td><fmt:formatDate value="${concursuri.stopInscrieri}" pattern="EEE yyyy-MM-dd"/></td>
-                    <td>${concursuri.isSoftware ? "Yes" : "No"}</td>
-                    <td>${concursuri.isHardware ? "Yes" : "No"}</td>
-                    <td>${concursuri.nivel}</td>
+                    <td class="text-center">${concursuri.isSoftware ? "Yes" : "No"}</td>
+                    <td class="text-center">${concursuri.isHardware ? "Yes" : "No"}</td>
+                    <td class="text-center">${concursuri.nivel}</td>
                 </tr>
             </c:forEach>
             </tbody>

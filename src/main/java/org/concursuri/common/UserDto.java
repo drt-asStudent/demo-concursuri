@@ -8,14 +8,14 @@ public class UserDto {
     String prenume;
     String eMail;
     String telefon;
-    Integer varsta;
+    //Integer varsta;
     String rol;
     Date bday;
     Boolean accepted;
 
-    public Integer getVarsta() {
-        return varsta;
-    }
+//    public Integer getVarsta() {
+//        return varsta;
+//    }
 
     public String getEmail() {
         return eMail;
@@ -49,14 +49,14 @@ public class UserDto {
         return accepted;
     }
 
-    public UserDto(Integer id, String nume, String prenume, String email, String telefon, String rol, Integer varsta, Date bday, Boolean accepted) {
+    public UserDto(Integer id, String nume, String prenume, String email, String telefon, String rol, /*Integer varsta,*/ Date bday, Boolean accepted) {
         this.id = id;
         this.nume = nume;
         this.prenume = prenume;
         this.eMail = email;
         this.telefon = telefon;
         this.rol = rol;
-        this.varsta = varsta;
+        //this.varsta = varsta;
         this.bday = null;
         this.accepted = accepted;
     }

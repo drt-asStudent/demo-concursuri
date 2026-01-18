@@ -5,38 +5,40 @@
 
 <t:pageTemplate pageTitle="COMPETITII">
 
-    <h1>Welcome</h1>
-    <h2>COMPETITIONS IN EFFECT</h2>
+    <div class="container mt-5">
+        <h1 class="mb-4 text-primary">Welcome</h1>
+        <h2 class="mb-5 text-secondary">COMPETITIONS IN EFFECT</h2>
 
-    <div class="container">
-        <table class="table table-bordered table-striped">
-            <thead class="table-dark">
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Competition title</th>
-                <th scope="col">Event Date</th>
-                <th scope="col">Registration Starts</th>
-                <th scope="col">Registration Ends</th>
-                <th scope="col">Software</th>
-                <th scope="col">Hardware</th>
-                <th scope="col">Participants level</th>
-            </tr>
-            </thead>
-            <tbody>
-
-            <c:forEach var="concursuri" items="${concursuri}">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover align-middle">
+                <thead class="table-dark">
                 <tr>
-                    <td>${concursuri.id}</td>
-                    <td>${concursuri.nume}</td>
-                    <td><fmt:formatDate value="${concursuri.dataDesfasurare}" pattern="EEE yyyy-MM-dd"/></td>
-                    <td><fmt:formatDate value="${concursuri.startInscrieri}" pattern="EEE yyyy-MM-dd"/></td>
-                    <td><fmt:formatDate value="${concursuri.stopInscrieri}" pattern="EEE yyyy-MM-dd"/></td>
-                    <td>${concursuri.isSoftware ? "Yes" : "No"}</td>
-                    <td>${concursuri.isHardware ? "Yes" : "No"}</td>
-                    <td>${concursuri.nivel}</td>
+                    <th scope="col" class="text-center py-3">ID</th>
+                    <th scope="col" class="py-3">Competition title</th>
+                    <th scope="col" class="py-3">Event Date</th>
+                    <th scope="col" class="py-3">Registration Starts</th>
+                    <th scope="col" class="py-3">Registration Ends</th>
+                    <th scope="col" class="text-center py-3">Software</th>
+                    <th scope="col" class="text-center py-3">Hardware</th>
+                    <th scope="col" class="py-3">Participants level</th>
                 </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+
+                <c:forEach var="concursuri" items="${concursuri}">
+                    <tr>
+                        <td class="text-center py-3">${concursuri.id}</td>
+                        <td class="py-3">${concursuri.nume}</td>
+                        <td class="py-3"><fmt:formatDate value="${concursuri.dataDesfasurare}" pattern="EEE yyyy-MM-dd"/></td>
+                        <td class="py-3"><fmt:formatDate value="${concursuri.startInscrieri}" pattern="EEE yyyy-MM-dd"/></td>
+                        <td class="py-3"><fmt:formatDate value="${concursuri.stopInscrieri}" pattern="EEE yyyy-MM-dd"/></td>
+                        <td class="text-center py-3">${concursuri.isSoftware ? "Yes" : "No"}</td>
+                        <td class="text-center py-3">${concursuri.isHardware ? "Yes" : "No"}</td>
+                        <td class="py-3">${concursuri.nivel}</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
     </div>
 </t:pageTemplate>

@@ -14,16 +14,7 @@
 
     <form class="needs-validation" novalidate method="POST" action="${pageContext.request.contextPath}/AddConcurs">
 
-        <!-- 1. id -->
-        <div class="mb-3">
-            <label for="id" class="form-label">Nr. crt.</label>
-            <input type="text" class="form-control" id="id" name="id" required>
-            <div class="invalid-feedback">
-                Id-ul trebuie să fie UNIC.
-            </div>
-        </div>
-
-        <!-- 2. nume -->
+            <!-- 2. nume -->
         <div class="mb-3">
             <label for="nume" class="form-label">Genericul concursului</label>
             <input type="text" class="form-control" id="nume" name="nume" required>

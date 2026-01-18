@@ -26,17 +26,17 @@ public class AddUser extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Integer id = Integer.parseInt(request.getParameter("id"));
+        /*Integer id = Integer.parseInt(request.getParameter("id"));*/
         String nume = request.getParameter("nume");
         String prenume = request.getParameter("prenume");
         String eMail = request.getParameter("eMail");
         String telefon = request.getParameter("telefon");
-        Integer varsta = Integer.parseInt(request.getParameter("varsta"));
+        /*Integer varsta = Integer.parseInt(request.getParameter("varsta"));*/
         String rol = request.getParameter("rol");
         //Date bday = (bdayString != null && !bdayString.isEmpty()) ? Date.valueOf(bdayString) : null;
         java.sql.Date bday = java.sql.Date.valueOf(request.getParameter("bday"));
 
-        usersBean.createUser(id, nume, prenume, eMail, telefon, rol, varsta, bday, true);
+        usersBean.createUser(nume, prenume, eMail, telefon, rol, /*varsta,*/ bday, false);
         response.sendRedirect(request.getContextPath() + "/Users");
     }
 }

@@ -49,8 +49,8 @@ public class ConcursBean {
         return concursDtos;
     }
 
-    public void createConcurs(Integer id, String nume, Date dataDesfasurare, Date startInscrieri, Date stopInscrieri, Boolean isSoftware, Boolean isHardware, String nivel) {
-        Concursuri concurs = new Concursuri(id, nume, dataDesfasurare, startInscrieri, stopInscrieri, isSoftware, isHardware, nivel);
+    public void createConcurs(String nume, Date dataDesfasurare, Date startInscrieri, Date stopInscrieri, Boolean isSoftware, Boolean isHardware, String nivel) {
+        Concursuri concurs = new Concursuri(nume, dataDesfasurare, startInscrieri, stopInscrieri, isSoftware, isHardware, nivel);
         entityManager.persist(concurs);
     }
 }

@@ -15,11 +15,20 @@
     <form class="needs-validation" novalidate method="POST" action="${pageContext.request.contextPath}/AddUser">
 
         <!-- 1. id -->
+<%--        <div class="mb-3">--%>
+<%--            <label for="id" class="form-label">Nr. crt.</label>--%>
+<%--            <input type="text" class="form-control" id="id" name="id" required>--%>
+<%--            <div class="invalid-feedback">--%>
+<%--                Id-ul utilizatorului trebuie să fie UNIC.--%>
+<%--            </div>--%>
+<%--        </div>--%>
+
+        <!-- 3. prenume -->
         <div class="mb-3">
-            <label for="id" class="form-label">Nr. crt.</label>
-            <input type="text" class="form-control" id="id" name="id" required>
+            <label for="prenume" class="form-label">Prenume</label>
+            <input type="text" class="form-control" id="prenume" name="prenume" required>
             <div class="invalid-feedback">
-                Id-ul utilizatorului trebuie să fie UNIC.
+                Câmpul prenume este obligatoriu.
             </div>
         </div>
 
@@ -32,14 +41,7 @@
             </div>
         </div>
 
-        <!-- 3. prenume -->
-        <div class="mb-3">
-            <label for="prenume" class="form-label">Prenume</label>
-            <input type="text" class="form-control" id="prenume" name="prenume" required>
-            <div class="invalid-feedback">
-                Câmpul prenume este obligatoriu.
-            </div>
-        </div>
+
 
         <!-- 4. email -->
         <div class="mb-3">
@@ -68,18 +70,18 @@
             </div>
         </div>
 
-        <!-- 7. varsta -->
-        <div class="mb-3">
-            <label for="varsta" class="form-label">Varsta</label>
-            <input type="text" class="form-control" id="varsta" name="varsta" required>
-            <div class="invalid-feedback">
-                Varsta utilizatorului este obligatorie.
-            </div>
-        </div>
+<%--        <!-- 7. varsta -->--%>
+<%--        <div class="mb-3">--%>
+<%--            <label for="varsta" class="form-label">Varsta</label>--%>
+<%--            <input type="text" class="form-control" id="varsta" name="varsta" required>--%>
+<%--            <div class="invalid-feedback">--%>
+<%--                Varsta utilizatorului este obligatorie.--%>
+<%--            </div>--%>
+<%--        </div>--%>
 
         <!-- 8. bday -->
         <div class="mb-3">
-            <label for="bday" class="form-label">Data desfășurarii</label>
+            <label for="bday" class="form-label">Data nașterii</label>
             <input type="date" class="form-control" id="bday" name="bday" required>
             <div class="invalid-feedback">
                 Câmpul bday este obligatoriu.

@@ -8,7 +8,7 @@ import java.sql.Date;
 @Table(name = "user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
@@ -18,8 +18,8 @@ public class User {
     @Column(name = "telefon")
     private String telefon;
 
-    @Column(name = "varsta")
-    private Integer varsta;
+//    @Column(name = "varsta")
+//    private Integer varsta;
 
     @Column(name = "categorie_participare", length = 15)
     private Integer categorieParticipare;
@@ -35,6 +35,9 @@ public class User {
 
     @Column(name = "accepted")
     private Boolean accepted;
+
+    @Column(name = "bday")
+    private Date bday;
 
     public Date getBday() {
         return bday;
@@ -52,17 +55,14 @@ public class User {
         this.accepted = accepted;
     }
 
-    @Column(name = "bday")
-    private Date bday;
 
-    public User(Integer id, String nume, String prenume, String eMail, String telefon, String rol, Integer varsta, Date bday, Boolean accepted) {
-    this.id = id;
+    public User(String nume, String prenume, String eMail, String telefon, String rol, /*Integer varsta,*/ Date bday, Boolean accepted) {
     this.nume = nume;
     this.prenume = prenume;
     this.eMail = eMail;
     this.telefon = telefon;
     this.rol = rol;
-    this.varsta = varsta;
+    //this.varsta = varsta;
     this.bday = bday;
     this.accepted = accepted;
     }
@@ -83,13 +83,13 @@ public class User {
         this.telefon = telefon;
     }
 
-    public Integer getVarsta() {
-        return varsta;
-    }
-
-    public void setVarsta(Integer varsta) {
-        this.varsta = varsta;
-    }
+//    public Integer getVarsta() {
+//        return varsta;
+//    }
+//
+//    public void setVarsta(Integer varsta) {
+//        this.varsta = varsta;
+//    }
 
     public Integer getCategorieParticipare() {
         return categorieParticipare;

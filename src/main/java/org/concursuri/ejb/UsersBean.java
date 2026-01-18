@@ -56,7 +56,6 @@ public class UsersBean {
                     user.getEMail(),
                     user.getTelefon(),
                     user.getRol(),
-                    user.getVarsta(),
                     user.getBday(),
                     user.getAccepted()
             );
@@ -65,9 +64,14 @@ public class UsersBean {
         return usersDtos;
     }
 
-    public void createUser(Integer id, String nume, String prenume, String eMail, String telefon, String rol, Integer varsta, Date bday, Boolean accepted) {
-        User user = new User(id,nume,prenume,eMail,telefon,rol,varsta,bday,accepted);
-        entityManager.persist(user);
+    public void createUser(String nume, String prenume, String eMail, String telefon, String rol, Date bday, Boolean accepted) {
+        try {
+            User user = new User(nume, prenume, eMail, telefon, rol, bday, accepted);
+            entityManager.persist(user);
+        } catch (Exception e) {
+            LOG.severe("Error creating user: " + e.getMessage());
+            throw new EJBException(e);
+        }
     }
 
     public void acceptUser(Integer userId) {

@@ -7,7 +7,7 @@ import java.sql.Date;
 @Table(name = "concursuri")
 public class Concursuri {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
@@ -103,8 +103,8 @@ public class Concursuri {
 
     }
 
-    public Concursuri(Integer id, String nume, Date dataDesfasurare, Date startInscrieri, Date stopInscrieri, Boolean isSoftware, Boolean isHardware, String nivel) {
-        this.id = id;
+    public Concursuri(String nume, Date dataDesfasurare, Date startInscrieri, Date stopInscrieri, Boolean isSoftware, Boolean isHardware, String nivel) {
+
         this.nume = nume;
         this.dataDesfasurare = dataDesfasurare;
         this.startInscrieri = startInscrieri;
