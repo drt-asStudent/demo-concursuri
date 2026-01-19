@@ -12,7 +12,7 @@
 <t:pageTemplate pageTitle="Adăugare user">
     <h1>Adăugare utilizator</h1>
 
-    <form class="needs-validation" novalidate method="POST" action="${pageContext.request.contextPath}/AddUser">
+    <form class="needs-validation" novalidate method="POST" action="${pageContext.request.contextPath}/AddUser" autocomplete="off">
 
         <!-- 1. id -->
 <%--        <div class="mb-3">--%>
@@ -51,18 +51,18 @@
         </div>
 
         <div class="mb-3">
-            <label for="username" class="form-label">Nume</label>
-            <input type="text" class="form-control" id="username" name="username" required>
+            <label for="username" class="form-label">Nume utilizator</label>
+            <input type="text" class="form-control" id="username" name="username" autocomplete="none" required>
             <div class="invalid-feedback">
                 Câmpul nume este obligatoriu.
             </div>
         </div>
 
         <div class="mb-3">
-            <label for="password" class="form-label">Nume</label>
-            <input type="password" class="form-control" id="password" name="password" required>
+            <label for="password" class="form-label">Parola</label>
+            <input type="password" class="form-control" id="password" name="password" autocomplete="new-password" required>
             <div class="invalid-feedback">
-                Câmpul nume este obligatoriu.
+                Câmpul nume utilizator este obligatoriu.
             </div>
         </div>
 

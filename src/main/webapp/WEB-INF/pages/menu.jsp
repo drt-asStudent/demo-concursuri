@@ -44,17 +44,17 @@
                         </a>
                     </li>
 
-                    <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-                    <li class="nav-item"><a class="nav-link disabled" aria-disabled="true">Disabled</a></li>
-
                     <!-- Login (adăugat corect ca și Cars) -->
-                    <li class="nav-item">
-                        <a class="nav-link ${activePage eq 'Login' ? 'active' : ''}"
-                           aria-current="page"
-                           href="${pageContext.request.contextPath}/Login">
-                            Login
-                        </a>
-                    </li>
+
+                    <c:choose>
+                        <c:when test="${pageContext.request.getRemoteUser() == null}">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/Login">Login</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/Logout">Logout</a>
+                        </c:otherwise>
+                    </c:choose>
+
 
                 </ul>
             </div>

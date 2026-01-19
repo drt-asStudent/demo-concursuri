@@ -32,7 +32,7 @@
                     <td>${user.id}</td>
                     <td>${user.prenume}</td>
                     <td>${user.nume}</td>
-                    <td>${user.email}</td>
+                    <td>${user.eMail}</td>
                     <td>${user.telefon}</td>
                     <td>${user.rol}</td>
 

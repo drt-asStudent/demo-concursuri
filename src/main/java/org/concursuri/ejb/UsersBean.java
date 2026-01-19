@@ -12,6 +12,7 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import org.concursuri.common.UserDto;
 import org.concursuri.entities.User;
+import org.concursuri.entities.Usergroups;
 
 @Stateless
 public class UsersBean {
@@ -95,6 +96,11 @@ public class UsersBean {
         if (user != null) {
             user.setAccepted(true);
         }
+        Usergroups groupMapping = new Usergroups(user.getUsername(), user.getRol());
+        entityManager.persist(groupMapping);
+
+        LOG.info("Added user " + user.getUsername() + " to group " + user.getRol());
+
     }
 
     public void acceptOrganizer(Integer userId) {

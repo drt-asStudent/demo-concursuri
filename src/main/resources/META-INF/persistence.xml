@@ -7,6 +7,7 @@
         <jta-data-source>jdbc/ConcursuriResource</jta-data-source>
         <class>org.concursuri.entities.User</class>
         <class>org.concursuri.entities.Concursuri</class>
+        <class>org.concursuri.entities.Usergroups</class>
 
         <properties>
             <property name="jakarta.persistence.schema-generation.database.action" value="create" />
