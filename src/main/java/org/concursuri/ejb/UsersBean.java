@@ -132,4 +132,21 @@ public class UsersBean {
             throw new EJBException(e);
         }
     }
+
+    public boolean isUserAccepted(String username) {
+        LOG.info("Checking accepted status for: " + username);
+        try {
+            TypedQuery<User> query = entityManager.createQuery(
+                    "SELECT u FROM User u WHERE u.username = :username",
+                    User.class);
+            query.setParameter("username", username);
+            List<User> users = query.getResultList();
+            if (users.isEmpty()) {
+                return false;
+            }
+            return Boolean.TRUE.equals(users.get(0).getAccepted());
+        } catch (Exception e) {
+            throw new EJBException(e);
+        }
+    }
 }

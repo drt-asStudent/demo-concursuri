@@ -1,6 +1,8 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<header data-bs-theme="dark" class="navbar navbar-dark bg-dark fixed-top shadow">
+
+<header data-bs-theme="dark">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container-fluid">
 
@@ -13,6 +15,7 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarCollapse">
+
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
 
                     <!-- ABOUT -->
@@ -35,6 +38,15 @@
                         </a>
                     </li>
 
+                    <!-- SPONSORI -->
+                    <li class="nav-item">
+                        <a class="nav-link ${activePage eq 'Firme' ? 'active' : ''}"
+                           aria-current="page"
+                           href="${pageContext.request.contextPath}/Firme">
+                            SPONSORII
+                        </a>
+                    </li>
+
                     <!-- USERS (adăugat corect ca și Cars) -->
                     <li class="nav-item">
                         <a class="nav-link ${activePage eq 'Users' ? 'active' : ''}"
@@ -43,17 +55,24 @@
                             Users
                         </a>
                     </li>
+                </ul>
+
+
 
                     <!-- Login (adăugat corect ca și Cars) -->
 
-                    <c:choose>
-                        <c:when test="${pageContext.request.getRemoteUser() == null}">
-                            <a class="nav-link" href="${pageContext.request.contextPath}/Login">Login</a>
-                        </c:when>
-                        <c:otherwise>
-                            <a class="nav-link" href="${pageContext.request.contextPath}/Logout">Logout</a>
-                        </c:otherwise>
-                    </c:choose>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+
+                        <c:choose>
+                            <c:when test="${pageContext.request.getRemoteUser() == null}">
+                                <a class="nav-link" href="${pageContext.request.contextPath}/Login">Login</a>
+                            </c:when>
+                            <c:otherwise>
+                                <a class="nav-link" href="${pageContext.request.contextPath}/Logout">Logout</a>
+                            </c:otherwise>
+                        </c:choose>
+                    </li>
 
 
                 </ul>

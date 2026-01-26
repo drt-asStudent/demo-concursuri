@@ -78,7 +78,12 @@
         <!-- 6. rol-->
         <div class="mb-3">
             <label for="rol" class="form-label">Rol</label>
-            <input type="text" class="form-control" id="rol" name="rol" required>
+            <select class="form-control" id="rol" name="rol" required>
+                <option value="" selected disabled>Selecteaza rol</option>
+                <option value="elev">elev</option>
+                <option value="student">student</option>
+                <option value="organizator">organizator</option>
+            </select>
             <div class="invalid-feedback">
                 Rolul utilizatorului este obligatoriu.
             </div>

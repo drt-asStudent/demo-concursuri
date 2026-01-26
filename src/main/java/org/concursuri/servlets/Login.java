@@ -27,13 +27,24 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        if (username == null) {
+            username = request.getParameter("j_username");
+        }
+        if (password == null) {
+            password = request.getParameter("j_password");
+        }
 
         UserDto user = usersBean.verifyUser(username, password);
 
-        if (user != null) {
+        if (user != null && Boolean.TRUE.equals(user.getAccepted())) {
             // Success! Store user info in the session
             request.getSession().setAttribute("user", user);
             response.sendRedirect(request.getContextPath() + "/");
+        } else if (user != null) {
+            request.setAttribute("message", "Sorry, your account has not been checked. Try again later!");
+            request.setAttribute("clearFields", true);
+            request.setAttribute("showPopup", true);
+            request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
         } else {
             // Failure
             request.setAttribute("message", "Username or password incorrect");
