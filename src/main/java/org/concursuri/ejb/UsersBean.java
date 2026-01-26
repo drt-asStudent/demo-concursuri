@@ -149,4 +149,21 @@ public class UsersBean {
             throw new EJBException(e);
         }
     }
+
+    public Integer findUserIdByUsername(String username) {
+        LOG.info("Finding user id for: " + username);
+        try {
+            TypedQuery<User> query = entityManager.createQuery(
+                    "SELECT u FROM User u WHERE u.username = :username",
+                    User.class);
+            query.setParameter("username", username);
+            List<User> users = query.getResultList();
+            if (users.isEmpty()) {
+                return null;
+            }
+            return users.get(0).getId();
+        } catch (Exception e) {
+            throw new EJBException(e);
+        }
+    }
 }

@@ -31,6 +31,7 @@
                 <th scope="col" class="text-center">Software profile</th>
                 <th scope="col" class="text-center">Hardware profile</th>
                 <th scope="col" class="text-center">Approach level</th>
+                <th scope="col" class="text-center">Participare</th>
             </tr>
             </thead>
             <tbody>
@@ -44,6 +45,12 @@
                     <td class="text-center">${concursuri.isSoftware ? "Yes" : "No"}</td>
                     <td class="text-center">${concursuri.isHardware ? "Yes" : "No"}</td>
                     <td class="text-center">${concursuri.nivel}</td>
+                    <td class="text-center">
+                        <a class="btn btn-sm btn-outline-primary"
+                           href="${pageContext.request.contextPath}/Participare?idc=${concursuri.id}">
+                            Participa
+                        </a>
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>
