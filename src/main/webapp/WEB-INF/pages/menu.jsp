@@ -18,25 +18,27 @@
 
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
 
-                    <!-- CONFIRMARE ORGANIZATORI -->
-                    <li class="nav-item">
-                        <a class="nav-link
-                           ${pageContext.request.requestURI.substring(pageContext.request.requestURI.lastIndexOf("/"))
-                           eq '/about.jsp' ? ' active' : ''}"
-                           aria-current="page"
-                           href="${pageContext.request.contextPath}/AddAcceptOrganizers">
-                            CONFIRMARE ORGANIZATORI
-                        </a>
-                    </li>
+                    <c:if test="${pageContext.request.isUserInRole('admin')}">
+                        <!-- CONFIRMARE ORGANIZATORI -->
+                        <li class="nav-item">
+                            <a class="nav-link
+                               ${pageContext.request.requestURI.substring(pageContext.request.requestURI.lastIndexOf("/"))
+                               eq '/about.jsp' ? ' active' : ''}"
+                               aria-current="page"
+                               href="${pageContext.request.contextPath}/AddAcceptOrganizers">
+                                CONFIRMARE ORGANIZATORI
+                            </a>
+                        </li>
 
-                    <!-- CONFIRMARE USERS -->
-                    <li class="nav-item">
-                        <a class="nav-link ${activePage eq 'AddAcceptUsers' ? 'active' : ''}"
-                           aria-current="page"
-                           href="${pageContext.request.contextPath}/AddAcceptUsers">
-                            CONFIRMARE USERS
-                        </a>
-                    </li>
+                        <!-- CONFIRMARE USERS -->
+                        <li class="nav-item">
+                            <a class="nav-link ${activePage eq 'AddAcceptUsers' ? 'active' : ''}"
+                               aria-current="page"
+                               href="${pageContext.request.contextPath}/AddAcceptUsers">
+                                CONFIRMARE USERS
+                            </a>
+                        </li>
+                    </c:if>
 
                     <!-- CONCURSURI -->
                     <li class="nav-item">
@@ -56,7 +58,7 @@
                         </a>
                     </li>
 
-                    <!-- USERS (adăugat corect ca și Cars) -->
+                    <!-- USERS (adăugat corect ca și Cars)
                     <li class="nav-item">
                         <a class="nav-link ${activePage eq 'Users' ? 'active' : ''}"
                            aria-current="page"
@@ -64,6 +66,8 @@
                             USERS
                         </a>
                     </li>
+                    -->
+
 
                     <!-- ADAUGARE CONCURS -->
                     <li>
