@@ -11,19 +11,15 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <t:pageTemplate pageTitle="CONCURSURI">
-    <h1>COMPETITIONS IN EFFECT</h1>
+    <h1 class="mb-4 text-primary">COMPETITIONS IN EFFECT</h1>
 
-    <!-- Buton ADD COMPETITION -->
-    <a href="${pageContext.request.contextPath}/AddConcurs"
-       class="btn btn-primary btn-lg mb-3">
-        Adăugare concurs
-    </a>
+
 
     <div class="container">
         <table class="table table-bordered table-striped">
             <thead class="table-dark">
             <tr>
-                <th scope="col">ID</th>
+
                 <th scope="col">Name</th>
                 <th scope="col">Scheduled</th>
                 <th scope="col">Registration Starts</th>
@@ -37,7 +33,7 @@
             <tbody>
             <c:forEach var="concursuri" items="${concursuri}">
                 <tr>
-                    <td>${concursuri.id}</td>
+
                     <td>${concursuri.nume}</td>
                     <td><fmt:formatDate value="${concursuri.dataDesfasurare}" pattern="EEE yyyy-MM-dd"/></td>
                     <td><fmt:formatDate value="${concursuri.startInscrieri}" pattern="EEE yyyy-MM-dd"/></td>

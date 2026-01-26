@@ -10,7 +10,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <t:pageTemplate pageTitle="AWAITING">
-    <h1>Requesting acceptance</h1>
+    <h1 class="mb-4 text-primary">Requesting acceptance</h1>
 
     <div class="container mt-4">
         <table class="table table-bordered table-striped table-hover">
@@ -24,6 +24,7 @@
                 <th scope="col">Status</th>
 
                 <th scope="col">Accept</th>
+                <th scope="col">Reject</th>
             </tr>
             </thead>
             <tbody>
@@ -39,7 +40,15 @@
                     <td>
                         <form method="POST" action="${pageContext.request.contextPath}/AddAcceptUsers">
                             <input type="hidden" name="user_id" value="${user.id}">
+                            <input type="hidden" name="action" value="accept">
                             <button type="submit" class="btn btn-success btn-sm">ACCEPT</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="POST" action="${pageContext.request.contextPath}/AddAcceptUsers">
+                            <input type="hidden" name="user_id" value="${user.id}">
+                            <input type="hidden" name="action" value="reject">
+                            <button type="submit" class="btn btn-danger btn-sm">REJECT</button>
                         </form>
                     </td>
                 </tr>

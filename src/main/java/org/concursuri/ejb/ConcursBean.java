@@ -31,6 +31,23 @@ public class ConcursBean {
         }
     }
 
+    public List<ConcursDto> findConcursuriNotParticipated(Integer idu) {
+        LOG.info("Find concursuri not participated by user: " + idu);
+        try {
+            TypedQuery<Concursuri> query = entityManager.createQuery(
+                    "SELECT c FROM Concursuri c " +
+                            "WHERE c.id NOT IN (" +
+                            "SELECT p.idc FROM Participari p WHERE p.idu = :idu" +
+                            ")",
+                    Concursuri.class);
+            query.setParameter("idu", idu);
+            List<Concursuri> concursuri = query.getResultList();
+            return copyConcursToDTO(concursuri);
+        } catch (Exception e) {
+            throw new EJBException(e);
+        }
+    }
+
     private List<ConcursDto> copyConcursToDTO(List<Concursuri> concursuri) {
         List<ConcursDto> concursDtos = new ArrayList<>();
         for (Concursuri cx : concursuri) {

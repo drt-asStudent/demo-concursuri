@@ -38,7 +38,7 @@ public class UsersBean {
         LOG.info("Find applying organizator");
         try {
             TypedQuery<User> query = entityManager.createQuery(
-                    "SELECT u FROM User u WHERE u.rol IN ('organizator') AND (u.accepted = false OR u.accepted IS NULL)",
+                    "SELECT u FROM User u WHERE u.rol IN ('organizator') AND u.accepted IS NULL",
                     User.class);
             List<User> users = query.getResultList();
             return copyUsersToDTO(users);
@@ -51,7 +51,7 @@ public class UsersBean {
         LOG.info("Find applying users");
         try {
             TypedQuery<User> query = entityManager.createQuery(
-                    "SELECT u FROM User u WHERE u.rol IN ('elev', 'student') AND (u.accepted = false OR u.accepted IS NULL)",
+                    "SELECT u FROM User u WHERE u.rol IN ('elev', 'student') AND u.accepted IS NULL",
                     User.class);
             List<User> users = query.getResultList();
             return copyUsersToDTO(users);
@@ -108,6 +108,22 @@ public class UsersBean {
         User user = entityManager.find(User.class, userId);
         if (user != null) {
             user.setAccepted(true);
+        }
+    }
+
+    public void rejectOrganizer(Integer userId) {
+        LOG.info("Rejecting organizer with id: " + userId);
+        User user = entityManager.find(User.class, userId);
+        if (user != null) {
+            user.setAccepted(false);
+        }
+    }
+
+    public void rejectUser(Integer userId) {
+        LOG.info("Rejecting user with id: " + userId);
+        User user = entityManager.find(User.class, userId);
+        if (user != null) {
+            user.setAccepted(false);
         }
     }
 

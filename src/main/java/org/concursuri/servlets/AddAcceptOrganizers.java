@@ -29,9 +29,14 @@ public class AddAcceptOrganizers extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userIdStr = request.getParameter("user_id");
+        String action = request.getParameter("action");
         if (userIdStr != null) {
             Integer userId = Integer.parseInt(userIdStr);
-            usersBean.acceptUser(userId);
+            if ("reject".equalsIgnoreCase(action)) {
+                usersBean.rejectOrganizer(userId);
+            } else {
+                usersBean.acceptUser(userId);
+            }
         }
         response.sendRedirect(request.getContextPath() + "/AddAcceptOrganizers");
     }

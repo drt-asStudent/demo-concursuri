@@ -18,14 +18,23 @@
 
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
 
-                    <!-- ABOUT -->
+                    <!-- CONFIRMARE ORGANIZATORI -->
                     <li class="nav-item">
                         <a class="nav-link
                            ${pageContext.request.requestURI.substring(pageContext.request.requestURI.lastIndexOf("/"))
                            eq '/about.jsp' ? ' active' : ''}"
                            aria-current="page"
-                           href="${pageContext.request.contextPath}/about.jsp">
-                            ABORT
+                           href="${pageContext.request.contextPath}/AddAcceptOrganizers">
+                            CONFIRMARE ORGANIZATORI
+                        </a>
+                    </li>
+
+                    <!-- CONFIRMARE USERS -->
+                    <li class="nav-item">
+                        <a class="nav-link ${activePage eq 'AddAcceptUsers' ? 'active' : ''}"
+                           aria-current="page"
+                           href="${pageContext.request.contextPath}/AddAcceptUsers">
+                            CONFIRMARE USERS
                         </a>
                     </li>
 
@@ -52,9 +61,18 @@
                         <a class="nav-link ${activePage eq 'Users' ? 'active' : ''}"
                            aria-current="page"
                            href="${pageContext.request.contextPath}/Users">
-                            Users
+                            USERS
                         </a>
                     </li>
+
+                    <!-- ADAUGARE CONCURS -->
+                    <li>
+                        <a href="${pageContext.request.contextPath}/AddConcurs"
+                           class="nav-link ${activePage eq 'AddConcurs' ? 'active' : ''}">
+                            ADĂUGARE CONCURS
+                        </a>
+                    </li>
+
                 </ul>
 
 

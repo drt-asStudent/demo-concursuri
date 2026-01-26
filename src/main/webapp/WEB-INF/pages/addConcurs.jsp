@@ -10,7 +10,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <t:pageTemplate pageTitle="Adăugare  concurs">
-    <h1>Adăugare concurs</h1>
+    <h1 class="mb-4 text-primary">Adăugare concurs</h1>
 
     <form class="needs-validation" novalidate method="POST" action="${pageContext.request.contextPath}/AddConcurs">
 

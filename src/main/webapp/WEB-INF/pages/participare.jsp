@@ -10,7 +10,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <t:pageTemplate pageTitle="Participare">
-    <h1>Participare</h1>
+    <h1 class="mb-4 text-primary">Participare</h1>
 
     <c:if test="${message != null}">
         <div class="alert alert-warning" role="alert">

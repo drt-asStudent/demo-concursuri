@@ -10,7 +10,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <t:pageTemplate pageTitle="Firme">
-    <h1>Firme</h1>
+    <h1 class="mb-4 text-primary">Firme</h1>
     <table class="table table-striped">
         <thead>
         <tr>
