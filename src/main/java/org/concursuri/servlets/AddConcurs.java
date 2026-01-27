@@ -6,8 +6,6 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import org.concursuri.common.ConcursDto;
 import org.concursuri.ejb.ConcursBean;
-import org.concursuri.ejb.FirmeBean;
-import org.concursuri.ejb.UsersBean;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,24 +15,10 @@ public class AddConcurs extends HttpServlet {
     @Inject
     ConcursBean concursBean;
 
-    @Inject
-    UsersBean usersBean;
-
-    @Inject
-    FirmeBean firmeBean;
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<ConcursDto> concursuri = concursBean.findAllConcursuri();
         request.setAttribute("concursuri", concursuri);
-        Integer iduOrganizator = null;
-        if (request.getUserPrincipal() != null) {
-            Integer userId = usersBean.findUserIdByUsername(request.getUserPrincipal().getName());
-            if (userId != null) {
-                iduOrganizator = firmeBean.findFirmaIdByUserId(userId);
-            }
-        }
-        request.setAttribute("iduOrganizator", iduOrganizator);
         request.getRequestDispatcher("/WEB-INF/pages/addConcurs.jsp").forward(request,response);
     }
 
@@ -60,22 +44,12 @@ public class AddConcurs extends HttpServlet {
 
         String nivel = request.getParameter("nivel");
 
-        Integer iduOrganizator = null;
-        String iduOrganizatorParam = request.getParameter("iduOrganizator");
-        if (iduOrganizatorParam != null && !iduOrganizatorParam.isBlank()) {
-            iduOrganizator = Integer.valueOf(iduOrganizatorParam);
-        }
-        if (iduOrganizator == null && request.getUserPrincipal() != null) {
-            Integer userId = usersBean.findUserIdByUsername(request.getUserPrincipal().getName());
-            if (userId != null) {
-                iduOrganizator = firmeBean.findFirmaIdByUserId(userId);
-            }
-        }
-        concursBean.createConcurs(nume, dataDesfasurare, startInscrieri, stopInscrieri, isSoftware, isHardware, nivel, iduOrganizator);
-        if (request.isUserInRole("student") || request.isUserInRole("elev")) {
+        concursBean.createConcurs(nume, dataDesfasurare, startInscrieri, stopInscrieri, isSoftware, isHardware, nivel);
+        if (request.isUserInRole("student") || request.isUserInRole("external")) {
             response.sendRedirect(request.getContextPath() + "/Concursuri");
         } else {
             response.sendRedirect(request.getContextPath() + "/Notare");
         }
     }
 }
+

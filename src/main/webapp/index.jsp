@@ -6,8 +6,9 @@
 <t:pageTemplate pageTitle="COMPETITII">
 
     <div class="container mt-5">
-        <h1 class="mb-4 text-primary">Welcome</h1>
-        <h2 class="mb-5 text-secondary">COMPETITIONS IN EFFECT</h2>
+        <h1 class="mb-4 text-primary">Welcome, at the future unicorns factory!</h1>
+        <h2 class="mb-5 text-primary">Rise and shine!!!</h2>
+        <h2 class="mb-5 text-secondary">COMING COMPETITIONS</h2>
 
         <div class="table-responsive">
             <table class="table table-bordered table-striped table-hover align-middle">

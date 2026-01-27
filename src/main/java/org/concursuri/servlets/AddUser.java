@@ -39,6 +39,6 @@ public class AddUser extends HttpServlet {
         java.sql.Date bday = java.sql.Date.valueOf(request.getParameter("bday"));
 
         usersBean.createUser(nume, prenume, eMail, username, password, telefon, rol, /*varsta,*/ bday, false);
-        response.sendRedirect(request.getContextPath() + "/Users");
+        response.sendRedirect(request.getContextPath() + "/Login");
     }
 }

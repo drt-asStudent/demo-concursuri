@@ -2,8 +2,8 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<c:set var="isAdmin" value="${pageContext.request.isUserInRole('admin') or pageContext.request.isUserInRole('ADMIN')}" />
-<c:set var="isOrganizator" value="${pageContext.request.isUserInRole('organizator') or pageContext.request.isUserInRole('ORGANIZATOR')}" />
+<c:set var="isAdmin" value="${pageContext.request.isUserInRole('admin')}" />
+<c:set var="isOrganizator" value="${pageContext.request.isUserInRole('organizator')}" />
 
 <header data-bs-theme="dark">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
@@ -20,16 +20,6 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
 
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
-
-                    <!-- SPONSORI - ORGANIZATORI-->
-                    <li class="nav-item">
-                        <a class="nav-link ${activePage eq 'Firme' ? 'active' : ''}"
-                           aria-current="page"
-                           href="${pageContext.request.contextPath}/Firme">
-                            SPONSORII
-                        </a>
-                    </li>
-
 
                     <c:if test="${isAdmin}">
 
@@ -55,7 +45,7 @@
                     </c:if>
 
 
-                    <c:if test="${pageContext.request.isUserInRole('student') or pageContext.request.isUserInRole('elev')}">
+                    <c:if test="${pageContext.request.isUserInRole('student') or pageContext.request.isUserInRole('external')}">
 
                         <!-- CONCURSURI -->
                         <li class="nav-item">
@@ -128,3 +118,4 @@
         </div>
     </nav>
 </header>
+

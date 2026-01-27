@@ -32,9 +32,6 @@ public class Concursuri {
     @Column(name = "nivel")
     private String nivel;
 
-    @Column(name = "id_organizator")
-    private Integer iduOrganizator;
-
     public Boolean getSoftware() {
         return isSoftware;
     }
@@ -100,14 +97,6 @@ public class Concursuri {
 
     public void setNivel(String nivel) {
         this.nivel = nivel;
-    }
-
-    public Integer getIduOrganizator() {
-        return iduOrganizator;
-    }
-
-    public void setIduOrganizator(Integer iduOrganizator) {
-        this.iduOrganizator = iduOrganizator;
     }
 
     public Concursuri() {

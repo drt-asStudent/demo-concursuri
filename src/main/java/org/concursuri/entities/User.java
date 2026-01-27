@@ -21,9 +21,6 @@ public class User {
 //    @Column(name = "varsta")
 //    private Integer varsta;
 
-    @Column(name = "categorie_participare", length = 15)
-    private Integer categorieParticipare;
-
     @Column(name = "rol", length = 10)
     private String rol;
 
@@ -112,14 +109,6 @@ public class User {
 //    public void setVarsta(Integer varsta) {
 //        this.varsta = varsta;
 //    }
-
-    public Integer getCategorieParticipare() {
-        return categorieParticipare;
-    }
-
-    public void setCategorieParticipare(Integer categorieParticipare) {
-        this.categorieParticipare = categorieParticipare;
-    }
 
     public String getRol() {
         return rol;

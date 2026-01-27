@@ -80,9 +80,9 @@
             <label for="rol" class="form-label">Rol</label>
             <select class="form-control" id="rol" name="rol" required>
                 <option value="" selected disabled>Selecteaza rol</option>
-                <option value="elev">elev</option>
-                <option value="student">student</option>
                 <option value="organizator">organizator</option>
+                <option value="student">student</option>
+                <option value="external">extern</option>
             </select>
             <div class="invalid-feedback">
                 Rolul utilizatorului este obligatoriu.
@@ -115,3 +115,4 @@
     <script src="${pageContext.request.contextPath}/scripts/form-validation.js"></script>
 
 </t:pageTemplate>
+

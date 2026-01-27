@@ -15,19 +15,13 @@
         <role-name>student</role-name>
     </security-role>
     <security-role>
-        <role-name>elev</role-name>
+        <role-name>external</role-name>
     </security-role>
     <security-role>
         <role-name>organizator</role-name>
     </security-role>
     <security-role>
         <role-name>admin</role-name>
-    </security-role>
-    <security-role>
-        <role-name>ORGANIZATOR</role-name>
-    </security-role>
-    <security-role>
-        <role-name>ADMIN</role-name>
     </security-role>
 
     <security-constraint>
@@ -38,7 +32,7 @@
         </web-resource-collection>
         <auth-constraint>
             <role-name>student</role-name>
-            <role-name>elev</role-name>
+            <role-name>external</role-name>
         </auth-constraint>
     </security-constraint>
 
@@ -51,8 +45,6 @@
         <auth-constraint>
             <role-name>admin</role-name>
             <role-name>organizator</role-name>
-            <role-name>ADMIN</role-name>
-            <role-name>ORGANIZATOR</role-name>
         </auth-constraint>
     </security-constraint>
 
@@ -65,8 +57,7 @@
         <auth-constraint>
             <role-name>organizator</role-name>
             <role-name>admin</role-name>
-            <role-name>ORGANIZATOR</role-name>
-            <role-name>ADMIN</role-name>
         </auth-constraint>
     </security-constraint>
 </web-app>
+
