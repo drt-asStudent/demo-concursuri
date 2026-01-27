@@ -31,4 +31,21 @@ public class FirmeBean {
             throw new EJBException(e);
         }
     }
+
+    public Integer findFirmaIdByUserId(Integer userId) {
+        LOG.info("Find firma id for user id: " + userId);
+        try {
+            TypedQuery<Integer> query = entityManager.createQuery(
+                    "SELECT r.firma.id FROM Reprezentanti r WHERE r.user.id = :userId",
+                    Integer.class);
+            query.setParameter("userId", userId);
+            List<Integer> results = query.getResultList();
+            if (results.isEmpty()) {
+                return null;
+            }
+            return results.get(0);
+        } catch (Exception e) {
+            throw new EJBException(e);
+        }
+    }
 }

@@ -25,15 +25,31 @@ public class Participari {
     @Column(name = "idc")
     private Integer idc;
 
-    public Participari() {
-    }
+    @Column(name="nota")
+    private Integer nota;
 
-    public Participari(String lucrare, String descriere, String profesorCoordonator, Integer idu, Integer idc) {
+    public Participari(String lucrare, String descriere, String profesorCoordonator, Integer idu, Integer idc, Integer nota) {
         this.lucrare = lucrare;
         this.descriere = descriere;
         this.profesorCoordonator = profesorCoordonator;
         this.idu = idu;
         this.idc = idc;
+        this.nota = nota;
+    }
+
+    public Participari(String lucrare, String descriere, String profesorCoordonator, Integer idu, Integer idc) {
+        this(lucrare, descriere, profesorCoordonator, idu, idc, null);
+    }
+
+    public Participari() {
+    }
+
+    public Integer getNota() {
+        return nota;
+    }
+
+    public void setNota(Integer nota) {
+        this.nota = nota;
     }
 
     public Integer getId() {

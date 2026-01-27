@@ -2,6 +2,9 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<c:set var="isAdmin" value="${pageContext.request.isUserInRole('admin') or pageContext.request.isUserInRole('ADMIN')}" />
+<c:set var="isOrganizator" value="${pageContext.request.isUserInRole('organizator') or pageContext.request.isUserInRole('ORGANIZATOR')}" />
+
 <header data-bs-theme="dark">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container-fluid">
@@ -28,7 +31,7 @@
                     </li>
 
 
-                    <c:if test="${pageContext.request.isUserInRole('admin')}">
+                    <c:if test="${isAdmin}">
 
                         <!-- CONFIRMARE ORGANIZATORI -->
                         <li class="nav-item">
@@ -78,13 +81,25 @@
                     -->
 
 
-                    <c:if test="${pageContext.request.isUserInRole('admin') or pageContext.request.isUserInRole('organizator')}">
+                    <c:if test="${isAdmin or isOrganizator}">
 
                         <!-- ADAUGARE CONCURS -->
                         <li>
                             <a href="${pageContext.request.contextPath}/AddConcurs"
                                class="nav-link ${activePage eq 'AddConcurs' ? 'active' : ''}">
                                 ADĂUGARE CONCURS
+                            </a>
+                        </li>
+
+                    </c:if>
+
+                    <c:if test="${isOrganizator or isAdmin}">
+
+                        <!-- NOTARE -->
+                        <li>
+                            <a href="${pageContext.request.contextPath}/Notare"
+                               class="nav-link ${activePage eq 'Notare' ? 'active' : ''}">
+                                NOTARE
                             </a>
                         </li>
 

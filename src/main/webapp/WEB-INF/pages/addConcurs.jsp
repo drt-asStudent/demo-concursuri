@@ -13,6 +13,7 @@
     <h1 class="mb-4 text-primary">Adăugare concurs</h1>
 
     <form class="needs-validation" novalidate method="POST" action="${pageContext.request.contextPath}/AddConcurs">
+        <input type="hidden" id="iduOrganizator" name="iduOrganizator" value="${iduOrganizator}">
 
             <!-- 2. nume -->
         <div class="mb-3">

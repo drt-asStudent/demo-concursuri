@@ -48,6 +48,20 @@ public class ConcursBean {
         }
     }
 
+    public List<ConcursDto> findConcursuriByOrganizator(Integer iduOrganizator) {
+        LOG.info("Find concursuri by organizator: " + iduOrganizator);
+        try {
+            TypedQuery<Concursuri> query = entityManager.createQuery(
+                    "SELECT c FROM Concursuri c WHERE c.iduOrganizator = :iduOrganizator",
+                    Concursuri.class);
+            query.setParameter("iduOrganizator", iduOrganizator);
+            List<Concursuri> concursuri = query.getResultList();
+            return copyConcursToDTO(concursuri);
+        } catch (Exception e) {
+            throw new EJBException(e);
+        }
+    }
+
     private List<ConcursDto> copyConcursToDTO(List<Concursuri> concursuri) {
         List<ConcursDto> concursDtos = new ArrayList<>();
         for (Concursuri cx : concursuri) {
@@ -66,8 +80,9 @@ public class ConcursBean {
         return concursDtos;
     }
 
-    public void createConcurs(String nume, Date dataDesfasurare, Date startInscrieri, Date stopInscrieri, Boolean isSoftware, Boolean isHardware, String nivel) {
+    public void createConcurs(String nume, Date dataDesfasurare, Date startInscrieri, Date stopInscrieri, Boolean isSoftware, Boolean isHardware, String nivel, Integer iduOrganizator) {
         Concursuri concurs = new Concursuri(nume, dataDesfasurare, startInscrieri, stopInscrieri, isSoftware, isHardware, nivel);
+        concurs.setIduOrganizator(iduOrganizator);
         entityManager.persist(concurs);
     }
 }
