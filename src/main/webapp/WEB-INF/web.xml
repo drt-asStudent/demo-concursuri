@@ -23,4 +23,28 @@
     <security-role>
         <role-name>admin</role-name>
     </security-role>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Concursuri</web-resource-name>
+            <url-pattern>/Concursuri</url-pattern>
+            <url-pattern>/WEB-INF/pages/concursuri.jsp</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>student</role-name>
+            <role-name>elev</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>AddConcurs</web-resource-name>
+            <url-pattern>/AddConcurs</url-pattern>
+            <url-pattern>/WEB-INF/pages/addConcurs.jsp</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>admin</role-name>
+            <role-name>organizator</role-name>
+        </auth-constraint>
+    </security-constraint>
 </web-app>

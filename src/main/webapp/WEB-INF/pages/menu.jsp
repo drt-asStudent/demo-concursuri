@@ -18,7 +18,18 @@
 
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
 
+                    <!-- SPONSORI - ORGANIZATORI-->
+                    <li class="nav-item">
+                        <a class="nav-link ${activePage eq 'Firme' ? 'active' : ''}"
+                           aria-current="page"
+                           href="${pageContext.request.contextPath}/Firme">
+                            SPONSORII
+                        </a>
+                    </li>
+
+
                     <c:if test="${pageContext.request.isUserInRole('admin')}">
+
                         <!-- CONFIRMARE ORGANIZATORI -->
                         <li class="nav-item">
                             <a class="nav-link
@@ -40,23 +51,21 @@
                         </li>
                     </c:if>
 
-                    <!-- CONCURSURI -->
-                    <li class="nav-item">
-                        <a class="nav-link ${activePage eq 'Concursuri' ? 'active' : ''}"
-                           aria-current="page"
-                           href="${pageContext.request.contextPath}/Concursuri">
-                            HELL'S BELLS
-                        </a>
-                    </li>
 
-                    <!-- SPONSORI -->
-                    <li class="nav-item">
-                        <a class="nav-link ${activePage eq 'Firme' ? 'active' : ''}"
-                           aria-current="page"
-                           href="${pageContext.request.contextPath}/Firme">
-                            SPONSORII
-                        </a>
-                    </li>
+                    <c:if test="${pageContext.request.isUserInRole('student') or pageContext.request.isUserInRole('elev')}">
+
+                        <!-- CONCURSURI -->
+                        <li class="nav-item">
+                            <a class="nav-link ${activePage eq 'Concursuri' ? 'active' : ''}"
+                               aria-current="page"
+                               href="${pageContext.request.contextPath}/Concursuri">
+                                HELL'S BELLS
+                            </a>
+                        </li>
+
+                    </c:if>
+
+
 
                     <!-- USERS (adăugat corect ca și Cars)
                     <li class="nav-item">
@@ -69,17 +78,19 @@
                     -->
 
 
-                    <!-- ADAUGARE CONCURS -->
-                    <li>
-                        <a href="${pageContext.request.contextPath}/AddConcurs"
-                           class="nav-link ${activePage eq 'AddConcurs' ? 'active' : ''}">
-                            ADĂUGARE CONCURS
-                        </a>
-                    </li>
+                    <c:if test="${pageContext.request.isUserInRole('admin') or pageContext.request.isUserInRole('organizator')}">
+
+                        <!-- ADAUGARE CONCURS -->
+                        <li>
+                            <a href="${pageContext.request.contextPath}/AddConcurs"
+                               class="nav-link ${activePage eq 'AddConcurs' ? 'active' : ''}">
+                                ADĂUGARE CONCURS
+                            </a>
+                        </li>
+
+                    </c:if>
 
                 </ul>
-
-
 
                     <!-- Login (adăugat corect ca și Cars) -->
 

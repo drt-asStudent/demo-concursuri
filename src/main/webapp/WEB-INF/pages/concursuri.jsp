@@ -11,7 +11,7 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <t:pageTemplate pageTitle="CONCURSURI">
-    <h1 class="mb-4 text-primary">COMPETITIONS IN EFFECT</h1>
+    <h1 class="mb-4 text-primary">COMPETITIONS IN PROGRESS</h1>
 
 
 
