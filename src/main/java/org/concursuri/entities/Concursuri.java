@@ -23,32 +23,28 @@ public class Concursuri {
     @Column(name = "stop_inscrieri")
     private Date stopInscrieri;
 
-    @Column(name = "is_software")
-    private Boolean isSoftware;
+    public static final String TYPE_SOFTWARE = "software";
+    public static final String TYPE_HARDWARE = "hardware";
+    public static final String TYPE_MIXED = "mixed";
 
-    @Column(name = "is_hardware")
-    private Boolean isHardware;
+    @Column(name = "competition_type", length = 20)
+    private String competitionType;
 
     @Column(name = "nivel")
     private String nivel;
 
-    public Boolean getSoftware() {
-        return isSoftware;
+    public Concursuri(String nume, Date dataDesfasurare, Date startInscrieri, Date stopInscrieri, String competitionType, String nivel) {
+        this.nume = nume;
+        this.dataDesfasurare = dataDesfasurare;
+        this.startInscrieri = startInscrieri;
+        this.stopInscrieri = stopInscrieri;
+        setCompetitionType(competitionType);
+        this.nivel = nivel;
     }
 
-    public void setSoftware(Boolean software) {
-        isSoftware = software;
+    public String getCompetitionType() {
+        return competitionType;
     }
-
-    public Boolean getHardware() {
-        return isHardware;
-    }
-
-    public void setHardware(Boolean hardware) {
-        isHardware = hardware;
-    }
-
-
 
     public Date getStopInscrieri() {
         return stopInscrieri;
@@ -65,8 +61,6 @@ public class Concursuri {
     public void setStartInscrieri(Date startInscrieri) {
         this.startInscrieri = startInscrieri;
     }
-
-
 
     public Date getDataDesfasurare() {
         return dataDesfasurare;
@@ -103,14 +97,13 @@ public class Concursuri {
 
     }
 
-    public Concursuri(String nume, Date dataDesfasurare, Date startInscrieri, Date stopInscrieri, Boolean isSoftware, Boolean isHardware, String nivel) {
-
-        this.nume = nume;
-        this.dataDesfasurare = dataDesfasurare;
-        this.startInscrieri = startInscrieri;
-        this.stopInscrieri = stopInscrieri;
-        this.isSoftware = isSoftware;
-        this.isHardware = isHardware;
-        this.nivel = nivel;
+    public void setCompetitionType(String competitionType) {
+        if (!(TYPE_SOFTWARE.equals(competitionType) ||
+                TYPE_HARDWARE.equals(competitionType) ||
+                TYPE_MIXED.equals(competitionType))) {
+            throw new IllegalArgumentException("Invalid competitionType: " + competitionType +
+                    ". Allowed values: software, hardware, mixed");
+        }
+        this.competitionType = competitionType;
     }
 }

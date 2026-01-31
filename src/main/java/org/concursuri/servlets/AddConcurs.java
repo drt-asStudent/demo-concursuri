@@ -35,16 +35,10 @@ public class AddConcurs extends HttpServlet {
         java.sql.Date startInscrieri = java.sql.Date.valueOf(request.getParameter("startInscrieri"));
         java.sql.Date stopInscrieri = java.sql.Date.valueOf(request.getParameter("stopInscrieri"));
 
-        // Handle the 1/0 as booleans
-        Boolean isSoftware = "1".equals(request.getParameter("isSoftware"));
-        Boolean isHardware = "1".equals(request.getParameter("isHardware"));
-
-        //Integer isSoftware = Integer.parseInt(request.getParameter("isSoftware"));
-        //Integer isHardware = Integer.parseInt(request.getParameter("isHardware"));
-
+        String competitionType = request.getParameter("competitionType");
         String nivel = request.getParameter("nivel");
 
-        concursBean.createConcurs(nume, dataDesfasurare, startInscrieri, stopInscrieri, isSoftware, isHardware, nivel);
+        concursBean.createConcurs(nume, dataDesfasurare, startInscrieri, stopInscrieri, competitionType, nivel);
         if (request.isUserInRole("student") || request.isUserInRole("external")) {
             response.sendRedirect(request.getContextPath() + "/Concursuri");
         } else {

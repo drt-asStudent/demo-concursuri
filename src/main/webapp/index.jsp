@@ -19,8 +19,7 @@
                     <th scope="col" class="py-3">Event Date</th>
                     <th scope="col" class="py-3">Registration Starts</th>
                     <th scope="col" class="py-3">Registration Ends</th>
-                    <th scope="col" class="text-center py-3">Software</th>
-                    <th scope="col" class="text-center py-3">Hardware</th>
+                    <th scope="col" class="text-center py-3">Competition type</th>
                     <th scope="col" class="py-3">Participants level</th>
                 </tr>
                 </thead>
@@ -33,8 +32,7 @@
                         <td class="py-3"><fmt:formatDate value="${concursuri.dataDesfasurare}" pattern="EEE yyyy-MM-dd"/></td>
                         <td class="py-3"><fmt:formatDate value="${concursuri.startInscrieri}" pattern="EEE yyyy-MM-dd"/></td>
                         <td class="py-3"><fmt:formatDate value="${concursuri.stopInscrieri}" pattern="EEE yyyy-MM-dd"/></td>
-                        <td class="text-center py-3">${concursuri.isSoftware ? "Yes" : "No"}</td>
-                        <td class="text-center py-3">${concursuri.isHardware ? "Yes" : "No"}</td>
+                        <td class="text-center py-3">${concursuri.competitionType}</td>
                         <td class="py-3">${concursuri.nivel}</td>
                     </tr>
                 </c:forEach>

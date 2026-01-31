@@ -10,10 +10,10 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<jsp:useBean id="today" class="java.util.Date" scope="page"/>
+
 <t:pageTemplate pageTitle="CONCURSURI">
     <h1 class="mb-4 text-primary">COMPETITIONS IN PROGRESS</h1>
-
-
 
     <div class="container">
         <table class="table table-bordered table-striped">
@@ -24,31 +24,40 @@
                 <th scope="col">Scheduled</th>
                 <th scope="col">Registration Starts</th>
                 <th scope="col">Registration Ends</th>
-                <th scope="col" class="text-center">Software profile</th>
-                <th scope="col" class="text-center">Hardware profile</th>
+                <th scope="col" class="text-center">Competition type</th>
                 <th scope="col" class="text-center">Approach level</th>
                 <th scope="col" class="text-center">Participare</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="concursuri" items="${concursuri}">
-                <tr>
 
-                    <td>${concursuri.nume}</td>
-                    <td><fmt:formatDate value="${concursuri.dataDesfasurare}" pattern="EEE yyyy-MM-dd"/></td>
-                    <td><fmt:formatDate value="${concursuri.startInscrieri}" pattern="EEE yyyy-MM-dd"/></td>
-                    <td><fmt:formatDate value="${concursuri.stopInscrieri}" pattern="EEE yyyy-MM-dd"/></td>
-                    <td class="text-center">${concursuri.isSoftware ? "Yes" : "No"}</td>
-                    <td class="text-center">${concursuri.isHardware ? "Yes" : "No"}</td>
-                    <td class="text-center">${concursuri.nivel}</td>
-                    <td class="text-center">
-                        <a class="btn btn-sm btn-outline-primary"
-                           href="${pageContext.request.contextPath}/Participare?idc=${concursuri.id}">
-                            Participa
-                        </a>
-                    </td>
-                </tr>
+            <fmt:formatDate var="todayYmd" value="${today}" pattern="yyyyMMdd"/>
+
+            <c:forEach var="concursuri" items="${concursuri}">
+                <fmt:formatDate var="desfasYmd" value="${concursuri.dataDesfasurare}" pattern="yyyyMMdd"/>
+                <fmt:formatDate var="stopYmd" value="${concursuri.stopInscrieri}" pattern="yyyyMMdd"/>
+
+                <c:if test="${desfasYmd >= todayYmd}">
+                    <tr>
+
+                        <td>${concursuri.nume}</td>
+                        <td><fmt:formatDate value="${concursuri.dataDesfasurare}" pattern="EEE yyyy-MM-dd"/></td>
+                        <td><fmt:formatDate value="${concursuri.startInscrieri}" pattern="EEE yyyy-MM-dd"/></td>
+                        <td><fmt:formatDate value="${concursuri.stopInscrieri}" pattern="EEE yyyy-MM-dd"/></td>
+                        <td class="text-center">${concursuri.competitionType}</td>
+                        <td class="text-center">${concursuri.nivel}</td>
+                        <td class="text-center">
+                            <c:if test="${stopYmd >= todayYmd}">
+                                <a class="btn btn-sm btn-outline-primary"
+                                   href="${pageContext.request.contextPath}/Participare?idc=${concursuri.id}">
+                                    Participa
+                                </a>
+                            </c:if>
+                        </td>
+                    </tr>
+                </c:if>
             </c:forEach>
+
             </tbody>
         </table>
     </div>

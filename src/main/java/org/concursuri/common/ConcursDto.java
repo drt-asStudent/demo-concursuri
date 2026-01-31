@@ -8,8 +8,7 @@ public class ConcursDto {
     Date dataDesfasurare;
     Date startInscrieri;
     Date stopInscrieri;
-    Boolean isSoftware;
-    Boolean isHardware;
+    String competitionType;
     String nivel;
 
     public String getNivel() {
@@ -36,22 +35,17 @@ public class ConcursDto {
         return stopInscrieri;
     }
 
-    public Boolean getIsSoftware() {
-        return isSoftware;
-    }
-
-    public Boolean getIsHardware() {
-        return isHardware;
-    }
-
-    public ConcursDto(Integer id, String nume, Date dataDesfasurare, Date startInscrieri, Date stopInscrieri, Boolean isSoftware, Boolean isHardware, String nivel) {
+    public ConcursDto(Integer id, String nume, Date dataDesfasurare, Date startInscrieri, Date stopInscrieri, String competitionType, String nivel) {
         this.id = id;
         this.nume = nume;
         this.dataDesfasurare = dataDesfasurare;
         this.startInscrieri = startInscrieri;
         this.stopInscrieri = stopInscrieri;
-        this.isSoftware = isSoftware;
-        this.isHardware = isHardware;
+        this.competitionType = competitionType;
         this.nivel = nivel;
+    }
+
+    public String getCompetitionType() {
+        return competitionType;
     }
 }

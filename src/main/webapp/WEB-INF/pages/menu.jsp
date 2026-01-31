@@ -56,6 +56,15 @@
                             </a>
                         </li>
 
+                        <!-- INSCRIERILE MELE -->
+                        <li class="nav-item">
+                            <a class="nav-link ${activePage eq 'InscrierileMele' ? 'active' : ''}"
+                               aria-current="page"
+                               href="${pageContext.request.contextPath}/InscrierileMele">
+                                INSCRIERILE MELE
+                            </a>
+                        </li>
+
                     </c:if>
 
 
@@ -97,7 +106,7 @@
 
                 </ul>
 
-                    <!-- Login (adăugat corect ca și Cars) -->
+                <!-- Login (adăugat corect ca și Cars) -->
 
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -118,4 +127,3 @@
         </div>
     </nav>
 </header>
-

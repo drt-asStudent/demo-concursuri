@@ -19,7 +19,7 @@
             <label for="nume" class="form-label">Genericul concursului</label>
             <input type="text" class="form-control" id="nume" name="nume" required>
             <div class="invalid-feedback">
-                CÃ¢mpul nume este obligatoriu.
+                Câmpul nume este obligatoriu.
             </div>
         </div>
 
@@ -28,51 +28,39 @@
             <label for="dataDesfasurare" class="form-label">Data desfășurarii</label>
             <input type="date" class="form-control" id="dataDesfasurare" name="dataDesfasurare" required>
             <div class="invalid-feedback">
-                CÃ¢mpul dataDesfasurare este obligatoriu.
+                Câmpul dataDesfasurare este obligatoriu.
             </div>
         </div>
 
-        <!-- 4. ÃŽncepere Ã®nscriere -->
+        <!-- 4. Începere înscriere -->
         <div class="mb-3">
             <label for="startInscrieri" class="form-label">Începere înscriere</label>
             <input type="date" class="form-control" id="startInscrieri" name="startInscrieri" required>
             <div class="invalid-feedback">
-                CÃ¢mpul startInscrieri este obligatoriu.
+                Câmpul startInscrieri este obligatoriu.
             </div>
         </div>
 
-        <!-- 5. SfÃ¢rÈ™it Ã®nscriere -->
+        <!-- 5. Sfârșit înscriere -->
         <div class="mb-3">
             <label for="stopInscrieri" class="form-label">Sfârșit înscriere</label>
             <input type="date" class="form-control" id="stopInscrieri" name="stopInscrieri" required>
             <div class="invalid-feedback">
-                CÃ¢mpul stopInscrieri este obligatoriu.
+                Câmpul stopInscrieri este obligatoriu.
             </div>
         </div>
 
-        <!-- 6. isSoftware -->
+        <!-- 6. competitionType -->
         <div class="mb-3">
-            <label for="isSoftware" class="form-label">Domeniul software?</label>
-            <select class="form-select" id="isSoftware" name="isSoftware" required>
+            <label for="competitionType" class="form-label">Competition type</label>
+            <select class="form-select" id="competitionType" name="competitionType" required>
                 <option value="" selected disabled>-- Select --</option>
-                <option value="1">Yes</option>
-                <option value="0">No</option>
+                <option value="software">software</option>
+                <option value="hardware">hardware</option>
+                <option value="mixed">mixed</option>
             </select>
             <div class="invalid-feedback">
-                CÃ¢mpul isSoftware este obligatoriu.
-            </div>
-        </div>
-
-        <!-- 7. isHardware -->
-        <div class="mb-3">
-            <label for="isHardware" class="form-label">Domeniul hardware?</label>
-            <select class="form-select" id="isHardware" name="isHardware" required>
-                <option value="" selected disabled>-- Select --</option>
-                <option value="1">Yes</option>
-                <option value="0">No</option>
-            </select>
-            <div class="invalid-feedback">
-                CÃ¢mpul isHardware este obligatoriu.
+                Câmpul competitionType este obligatoriu.
             </div>
         </div>
 
@@ -82,10 +70,10 @@
             <select class="form-select" id="nivel" name="nivel" required>
                 <option value="" selected disabled>-- Select --</option>
                 <option value="external">external</option>
-                <option value="student">student</option>
+                <option value="ULBSibiu">ULBSibiu</option>
             </select>
             <div class="invalid-feedback">
-                CÃ¢mpul nivel este obligatoriu.
+                Câmpul nivel este obligatoriu.
             </div>
         </div>
 

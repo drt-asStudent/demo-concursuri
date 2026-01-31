@@ -51,7 +51,7 @@ public class UsersBean {
         LOG.info("Find applying users");
         try {
             TypedQuery<User> query = entityManager.createQuery(
-                    "SELECT u FROM User u WHERE u.rol IN ('external', 'student') AND (u.accepted IS NULL OR u.accepted = false)",
+                    "SELECT u FROM User u WHERE u.rol IN ('external', 'student') AND u.accepted IS NULL",
                     User.class);
             List<User> users = query.getResultList();
             return copyUsersToDTO(users);

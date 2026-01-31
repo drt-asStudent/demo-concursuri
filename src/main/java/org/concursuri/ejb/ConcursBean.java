@@ -57,8 +57,7 @@ public class ConcursBean {
                     cx.getDataDesfasurare(),
                     cx.getStartInscrieri(),
                     cx.getStopInscrieri(),
-                    cx.getSoftware(),
-                    cx.getHardware(),
+                    cx.getCompetitionType(),
                     cx.getNivel()
             );
             concursDtos.add(dto);
@@ -66,8 +65,8 @@ public class ConcursBean {
         return concursDtos;
     }
 
-    public void createConcurs(String nume, Date dataDesfasurare, Date startInscrieri, Date stopInscrieri, Boolean isSoftware, Boolean isHardware, String nivel) {
-        Concursuri concurs = new Concursuri(nume, dataDesfasurare, startInscrieri, stopInscrieri, isSoftware, isHardware, nivel);
+    public void createConcurs(String nume, Date dataDesfasurare, Date startInscrieri, Date stopInscrieri, String competitionType, String nivel) {
+        Concursuri concurs = new Concursuri(nume, dataDesfasurare, startInscrieri, stopInscrieri, competitionType, nivel);
         entityManager.persist(concurs);
     }
 }
