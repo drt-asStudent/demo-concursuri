@@ -48,6 +48,20 @@ public class ConcursBean {
         }
     }
 
+    public List<ConcursDto> findConcursuriByOrganizator(Integer idOrganizator) {
+        LOG.info("Find concursuri for organizator id: " + idOrganizator);
+        try {
+            TypedQuery<Concursuri> query = entityManager.createQuery(
+                    "SELECT c FROM Concursuri c WHERE c.idOrganizator = :ido ORDER BY c.id",
+                    Concursuri.class
+            );
+            query.setParameter("ido", idOrganizator);
+            return copyConcursToDTO(query.getResultList());
+        } catch (Exception e) {
+            throw new EJBException(e);
+        }
+    }
+
     private List<ConcursDto> copyConcursToDTO(List<Concursuri> concursuri) {
         List<ConcursDto> concursDtos = new ArrayList<>();
         for (Concursuri cx : concursuri) {
@@ -59,6 +73,7 @@ public class ConcursBean {
                     cx.getStopInscrieri(),
                     cx.getCompetitionType(),
                     cx.getNivel(),
+                    cx.getMinPart(),
                     cx.getMaxPart()
             );
             concursDtos.add(dto);
@@ -67,9 +82,19 @@ public class ConcursBean {
     }
 
     public void createConcurs(String nume, Date dataDesfasurare, Date startInscrieri, Date stopInscrieri,
-                              String competitionType, String nivel, int maxPart) {
+                              String competitionType, String nivel, int minPart, int maxPart, Integer idOrganizator) {
+        if (minPart > maxPart) {
+            throw new IllegalArgumentException("minPart must be <= maxPart");
+        }
+        if (idOrganizator == null) {
+            throw new IllegalArgumentException("idOrganizator must not be null");
+        }
+
         Concursuri concurs = new Concursuri(nume, dataDesfasurare, startInscrieri, stopInscrieri, competitionType, nivel);
+        concurs.setMinPart(minPart);
         concurs.setMaxPart(maxPart);
+        concurs.setIdOrganizator(idOrganizator);
+
         entityManager.persist(concurs);
     }
 }

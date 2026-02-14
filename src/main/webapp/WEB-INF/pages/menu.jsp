@@ -88,6 +88,13 @@
                             </a>
                         </li>
 
+                        <!-- ACCEPTARE LUCRARI -->
+                        <li>
+                            <a href="${pageContext.request.contextPath}/AcceptareLucrari"
+                               class="nav-link ${activePage eq 'AcceptareLucrari' ? 'active' : ''}">
+                                ACCEPTARE LUCRARI
+                            </a>
+                        </li>
 
                         <!-- NOTARE -->
                         <li>

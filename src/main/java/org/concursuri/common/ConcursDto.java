@@ -11,6 +11,7 @@ public class ConcursDto {
     String competitionType;
     String nivel;
 
+    int minPart;
     // seats (entity field is maxPart; JSP currently uses numarLocuri)
     int maxPart;
 
@@ -42,7 +43,7 @@ public class ConcursDto {
     }
 
     public ConcursDto(Integer id, String nume, Date dataDesfasurare, Date startInscrieri, Date stopInscrieri,
-                      String competitionType, String nivel, int maxPart) {
+                      String competitionType, String nivel, int minPart, int maxPart) {
         this.id = id;
         this.nume = nume;
         this.dataDesfasurare = dataDesfasurare;
@@ -50,6 +51,7 @@ public class ConcursDto {
         this.stopInscrieri = stopInscrieri;
         this.competitionType = competitionType;
         this.nivel = nivel;
+        this.minPart = minPart;
         this.maxPart = maxPart;
     }
 

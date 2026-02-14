@@ -12,6 +12,12 @@
 <t:pageTemplate pageTitle="Adăugare  concurs">
     <h1 class="mb-4 text-primary">Adăugare concurs</h1>
 
+    <c:if test="${not empty error}">
+        <div class="alert alert-danger" role="alert">
+            <c:out value="${error}" />
+        </div>
+    </c:if>
+
     <form class="needs-validation" novalidate method="POST" action="${pageContext.request.contextPath}/AddConcurs">
 
             <!-- 2. nume -->
@@ -77,12 +83,21 @@
             </div>
         </div>
 
-        <!-- 9. maxPart -->
+        <!-- 9a. minPart -->
+        <div class="mb-3">
+            <label for="minPart" class="form-label">Min participants</label>
+            <input type="number" class="form-control" id="minPart" name="minPart" min="1" required>
+            <div class="invalid-feedback">
+                Min participants must be <= Max participants.
+            </div>
+        </div>
+
+        <!-- 9b. maxPart -->
         <div class="mb-3">
             <label for="maxPart" class="form-label">Max participants</label>
             <input type="number" class="form-control" id="maxPart" name="maxPart" min="1" required>
             <div class="invalid-feedback">
-                Câmpul maxPart este obligatoriu.
+                Max participants must be >= Min participants.
             </div>
         </div>
 
@@ -90,8 +105,32 @@
         <button type="submit" class="btn btn-primary">Save</button>
 
     </form>
-
+    <br><br><br>
     <script src="${pageContext.request.contextPath}/scripts/form-validation.js"></script>
+    <script type="text/javascript">
+        (function () {
+            const minEl = document.getElementById('minPart');
+            const maxEl = document.getElementById('maxPart');
+            if (!minEl || !maxEl) return;
+
+            function validateMinMax() {
+                const min = parseInt(minEl.value, 10);
+                const max = parseInt(maxEl.value, 10);
+
+                minEl.setCustomValidity('');
+                maxEl.setCustomValidity('');
+
+                if (!Number.isNaN(min) && !Number.isNaN(max) && min > max) {
+                    minEl.setCustomValidity('minPart must be <= maxPart');
+                    maxEl.setCustomValidity('maxPart must be >= minPart');
+                }
+            }
+
+            minEl.addEventListener('input', validateMinMax);
+            maxEl.addEventListener('input', validateMinMax);
+            validateMinMax();
+        })();
+    </script>
 
 </t:pageTemplate>
 
