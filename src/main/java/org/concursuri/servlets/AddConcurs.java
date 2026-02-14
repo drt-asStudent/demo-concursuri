@@ -38,7 +38,10 @@ public class AddConcurs extends HttpServlet {
         String competitionType = request.getParameter("competitionType");
         String nivel = request.getParameter("nivel");
 
-        concursBean.createConcurs(nume, dataDesfasurare, startInscrieri, stopInscrieri, competitionType, nivel);
+        int maxPart = Integer.parseInt(request.getParameter("maxPart"));
+
+        concursBean.createConcurs(nume, dataDesfasurare, startInscrieri, stopInscrieri, competitionType, nivel, maxPart);
+
         if (request.isUserInRole("student") || request.isUserInRole("external")) {
             response.sendRedirect(request.getContextPath() + "/Concursuri");
         } else {

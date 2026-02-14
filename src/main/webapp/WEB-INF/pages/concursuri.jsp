@@ -47,12 +47,19 @@
                         <td class="text-center">${concursuri.competitionType}</td>
                         <td class="text-center">${concursuri.nivel}</td>
                         <td class="text-center">
-                            <c:if test="${stopYmd >= todayYmd}">
-                                <a class="btn btn-sm btn-outline-primary"
-                                   href="${pageContext.request.contextPath}/Participare?idc=${concursuri.id}">
-                                    Participa
-                                </a>
-                            </c:if>
+                            <c:choose>
+                                <c:when test="${stopYmd >= todayYmd}">
+                                    <a class="btn btn-sm btn-outline-primary"
+                                       href="${pageContext.request.contextPath}/Participare?idc=${concursuri.id}">
+                                        Participa
+                                    </a>
+                                </c:when>
+                                <c:otherwise>
+                                    <span class="text-danger">
+                                        Registration closed
+                                    </span>
+                                </c:otherwise>
+                            </c:choose>
                         </td>
                     </tr>
                 </c:if>

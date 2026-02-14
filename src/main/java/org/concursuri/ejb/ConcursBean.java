@@ -58,15 +58,18 @@ public class ConcursBean {
                     cx.getStartInscrieri(),
                     cx.getStopInscrieri(),
                     cx.getCompetitionType(),
-                    cx.getNivel()
+                    cx.getNivel(),
+                    cx.getMaxPart()
             );
             concursDtos.add(dto);
         }
         return concursDtos;
     }
 
-    public void createConcurs(String nume, Date dataDesfasurare, Date startInscrieri, Date stopInscrieri, String competitionType, String nivel) {
+    public void createConcurs(String nume, Date dataDesfasurare, Date startInscrieri, Date stopInscrieri,
+                              String competitionType, String nivel, int maxPart) {
         Concursuri concurs = new Concursuri(nume, dataDesfasurare, startInscrieri, stopInscrieri, competitionType, nivel);
+        concurs.setMaxPart(maxPart);
         entityManager.persist(concurs);
     }
 }

@@ -43,6 +43,21 @@ public class ParticipariBean {
         }
     }
 
+    public int countParticipariByConcursId(Integer idc) {
+        LOG.info("Count participari for concurs: " + idc);
+        try {
+            TypedQuery<Long> query = entityManager.createQuery(
+                    "SELECT COUNT(p) FROM Participari p WHERE p.idc = :idc",
+                    Long.class
+            );
+            query.setParameter("idc", idc);
+            Long cnt = query.getSingleResult();
+            return cnt == null ? 0 : cnt.intValue();
+        } catch (Exception e) {
+            throw new EJBException(e);
+        }
+    }
+
     public boolean updateNota(Integer idu, Integer idc, String lucrare, Integer nota) {
         LOG.info("Updating nota for participare: idu=" + idu + ", idc=" + idc + ", lucrare=" + lucrare);
         try {
@@ -52,10 +67,12 @@ public class ParticipariBean {
             query.setParameter("idu", idu);
             query.setParameter("idc", idc);
             query.setParameter("lucrare", lucrare);
+
             List<Participari> results = query.getResultList();
             if (results.isEmpty()) {
                 return false;
             }
+
             Participari participare = results.get(0);
             participare.setNota(nota);
             return true;

@@ -9,13 +9,11 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container-fluid">
 
-            <a class="navbar-brand" href="${pageContext.request.contextPath}">COMPETIȚII</a>
+            <c:if test="${pageContext.request.remoteUser == null}">
+                <a class="navbar-brand" href="${pageContext.request.contextPath}">COMPETIȚII</a>
+            </c:if>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarCollapse" aria-controls="navbarCollapse"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+
 
             <div class="collapse navbar-collapse" id="navbarCollapse">
 
@@ -80,7 +78,7 @@
                     -->
 
 
-                    <c:if test="${isAdmin or isOrganizator}">
+                    <c:if test="${pageContext.request.isUserInRole('organizator')}">
 
                         <!-- ADAUGARE CONCURS -->
                         <li>
@@ -90,9 +88,6 @@
                             </a>
                         </li>
 
-                    </c:if>
-
-                    <c:if test="${isOrganizator or isAdmin}">
 
                         <!-- NOTARE -->
                         <li>

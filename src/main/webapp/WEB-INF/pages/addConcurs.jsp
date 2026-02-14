@@ -77,7 +77,16 @@
             </div>
         </div>
 
-        <!-- 9. Save Button -->
+        <!-- 9. maxPart -->
+        <div class="mb-3">
+            <label for="maxPart" class="form-label">Max participants</label>
+            <input type="number" class="form-control" id="maxPart" name="maxPart" min="1" required>
+            <div class="invalid-feedback">
+                Câmpul maxPart este obligatoriu.
+            </div>
+        </div>
+
+        <!-- 10. Save Button -->
         <button type="submit" class="btn btn-primary">Save</button>
 
     </form>

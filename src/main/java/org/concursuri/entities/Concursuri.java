@@ -33,6 +33,17 @@ public class Concursuri {
     @Column(name = "nivel")
     private String nivel;
 
+    @Column(name="max_part")
+    private int maxPart;
+
+    public int getMaxPart() {
+        return maxPart;
+    }
+
+    public void setMaxPart(int maxPart) {
+        this.maxPart = maxPart;
+    }
+
     public Concursuri(String nume, Date dataDesfasurare, Date startInscrieri, Date stopInscrieri, String competitionType, String nivel) {
         this.nume = nume;
         this.dataDesfasurare = dataDesfasurare;
