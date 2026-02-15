@@ -9,9 +9,9 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container-fluid">
 
-            <c:if test="${pageContext.request.remoteUser == null}">
+            <%--<c:if test="${pageContext.request.remoteUser == null}">--%>
                 <a class="navbar-brand" href="${pageContext.request.contextPath}">COMPETIȚII</a>
-            </c:if>
+            <%--</c:if>--%>
 
 
 

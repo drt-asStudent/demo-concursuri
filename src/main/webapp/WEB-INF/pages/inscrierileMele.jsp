@@ -27,7 +27,7 @@
                     <th scope="col">Lucrare</th>
                     <th scope="col">Descriere</th>
                     <th scope="col">Profesor coordonator</th>
-                    <th scope="col" class="text-center">Edit</th>
+                    <th scope="col" class="text-center">Modifică</th>
                     <th scope="col" class="text-center">MERITĂ?</th>
                 </tr>
                 </thead>

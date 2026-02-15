@@ -19,8 +19,9 @@
         cursor: pointer;
     }
 </style>
+
     <div class="container mt-5">
-        <h1 class="mb-4 text-primary">Welcome to the future unicorns factory!</h1>
+        <h1 class="mb-4 text-primary">WELCOME TO THE FUTURE UNICORN FACTORY!</h1>
         <h2 class="mb-5 text-primary">Rise and shine!!!</h2>
         <h2 class="mb-5 text-secondary">PENDING COMPETITIONS</h2>
 
@@ -30,14 +31,15 @@
             <table class="table table-bordered table-striped table-hover align-middle table-glass">
                 <thead class="table-dark">
                 <tr>
-                    <th scope="col" class="text-center py-3">ID</th>
+                    <%-- <th scope="col" class="text-center py-3">ID</th> --%>
                     <th scope="col" class="py-3">Competition title</th>
-                    <th scope="col" class="py-3">Event Date</th>
+                    <th scope="col" class="py-3">Date the event is scheduled</th>
                     <th scope="col" class="py-3">Registration Starts</th>
                     <th scope="col" class="py-3">Registration Ends</th>
                     <th scope="col" class="text-center py-3">Competition type</th>
                     <th scope="col" class="py-3">Participants level</th>
                     <th scope="col" class="py-3">Seats</th>
+                    <th scope="col" class="text-center py-3">Details</th>
                 </tr>
                 </thead>
 
@@ -49,35 +51,44 @@
                     <c:if test="${desfasYmd >= todayYmd}">
                         <tr class="${isGuest ? 'clickable-row' : ''}"
                             data-href="${isGuest ? pageContext.request.contextPath.concat('/Login') : ''}">
-                            <td class="text-center py-3">${concursuri.id}</td>
-                            <td class="py-3">${concursuri.nume}</td>
-                            <td class="py-3"><fmt:formatDate value="${concursuri.dataDesfasurare}" pattern="EEE yyyy-MM-dd"/></td>
-                            <td class="py-3"><fmt:formatDate value="${concursuri.startInscrieri}" pattern="EEE yyyy-MM-dd"/></td>
-                            <td class="py-3"><fmt:formatDate value="${concursuri.stopInscrieri}" pattern="EEE yyyy-MM-dd"/></td>
-                            <td class="text-center py-3">${concursuri.competitionType}</td>
-                            <td class="py-3">${concursuri.nivel}</td>
-                            <td class="py-3">
-                                <c:out value="${concursuri.registeredCount != null ? concursuri.registeredCount : 0}" /> /
-                                <c:out value="${concursuri.numarLocuri}" />
-                            </td>
-                        </tr>
-                    </c:if>
-                </c:forEach>
+                        <%-- <td class="text-center py-3">${concursuri.id}</td> --%>
+                        <td class="py-3">${concursuri.nume}</td>
+                        <td class="py-3" style="font-size: larger; font-weight: bold;"><fmt:formatDate value="${concursuri.dataDesfasurare}" pattern="EEE yyyy-MM-dd"/></td>
+                        <td class="py-3"><fmt:formatDate value="${concursuri.startInscrieri}" pattern="EEE yyyy-MM-dd"/></td>
+                        <td class="py-3"><fmt:formatDate value="${concursuri.stopInscrieri}" pattern="EEE yyyy-MM-dd"/></td>
+                        <td class="text-center py-3">${concursuri.competitionType}</td>
+                        <td class="py-3">${concursuri.nivel}</td>
+                        <td class="py-3">
+                            <c:out value="${concursuri.registeredCount != null ? concursuri.registeredCount : 0}" /> /
+                            <c:out value="${concursuri.numarLocuri}" />
+                        </td>
+                        <td class="text-center py-3">
+                            <a class="btn btn-sm btn-primary"
+                               href="${pageContext.request.contextPath}${isGuest ? '/Login' : '/DetaliiConcurs?idc='.concat(concursuri.id)}">
+                                DETAILS
+                            </a>
+                        </td>
+                    </tr>
+                </c:if>
+            </c:forEach>
 
-                </tbody>
-            </table>
-        </div>
+            </tbody>
+        </table>
     </div>
+</div>
+<br><br><br>
+<script type="text/javascript">
+    document.addEventListener('click', function (e) {
+        const row = e.target.closest('tr[data-href]');
+        if (!row) return;
 
-    <script type="text/javascript">
-        document.addEventListener('click', function (e) {
-            const row = e.target.closest('tr[data-href]');
-            if (!row) return;
+        // Don't trigger row redirect when clicking the DETAILS button/link
+        if (e.target.closest('a, button, input, select, textarea, label')) return;
 
-            const href = row.getAttribute('data-href');
-            if (!href) return; // logged in => no redirect
+        const href = row.getAttribute('data-href');
+        if (!href) return; // logged in => no redirect
 
-            window.location.href = href;
-        });
-    </script>
+        window.location.href = href;
+    });
+</script>
 </t:pageTemplate>

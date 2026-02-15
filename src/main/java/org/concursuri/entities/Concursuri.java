@@ -14,6 +14,9 @@ public class Concursuri {
     @Column(name = "nume", length = 70)
     private String nume;
 
+    @Column(name = "detalii_concurs", length = 1000)
+    private String detaliiConcurs;
+
     @Column(name = "data_desfasurare")
     private Date dataDesfasurare;
 
@@ -38,12 +41,13 @@ public class Concursuri {
     @Column(name = "id_organizator")
     private Integer idOrganizator;
 
+    @Column(name="max_part")
+    private int maxPart;
+
+
     public int getMinPart() {
         return minPart;
     }
-
-    @Column(name="max_part")
-    private int maxPart;
 
     public int getMaxPart() {
         return maxPart;
@@ -65,8 +69,9 @@ public class Concursuri {
         this.idOrganizator = idOrganizator;
     }
 
-    public Concursuri(String nume, Date dataDesfasurare, Date startInscrieri, Date stopInscrieri, String competitionType, String nivel) {
+    public Concursuri(String nume, String DetaliiConcurs, Date dataDesfasurare, Date startInscrieri, Date stopInscrieri, String competitionType, String nivel) {
         this.nume = nume;
+        this.detaliiConcurs = DetaliiConcurs;
         this.dataDesfasurare = dataDesfasurare;
         this.startInscrieri = startInscrieri;
         this.stopInscrieri = stopInscrieri;
@@ -123,6 +128,14 @@ public class Concursuri {
 
     public void setNivel(String nivel) {
         this.nivel = nivel;
+    }
+
+    public String getDetaliiConcurs() {
+        return detaliiConcurs;
+    }
+
+    public void setDetaliiConcurs(String detaliiConcurs) {
+        this.detaliiConcurs = detaliiConcurs;
     }
 
     public Concursuri() {

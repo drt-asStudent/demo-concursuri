@@ -29,6 +29,12 @@
             </div>
         </div>
 
+        <!-- detaliiConcurs -->
+        <div class="mb-3">
+            <label for="detaliiConcurs" class="form-label">Detalii concurs</label>
+            <input type="text" class="form-control" id="detaliiConcurs" name="detaliiConcurs" maxlength="255">
+        </div>
+
         <!-- 3. Data desfășurarii -->
         <div class="mb-3">
             <label for="dataDesfasurare" class="form-label">Data desfășurarii</label>

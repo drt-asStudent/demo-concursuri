@@ -43,6 +43,7 @@ public class AddConcurs extends HttpServlet {
         }
 
         String nume = request.getParameter("nume");
+        String detaliiConcurs = request.getParameter("detaliiConcurs");
 
         java.sql.Date dataDesfasurare = java.sql.Date.valueOf(request.getParameter("dataDesfasurare"));
         java.sql.Date startInscrieri = java.sql.Date.valueOf(request.getParameter("startInscrieri"));
@@ -62,6 +63,7 @@ public class AddConcurs extends HttpServlet {
 
         concursBean.createConcurs(
                 nume,
+                detaliiConcurs,
                 dataDesfasurare,
                 startInscrieri,
                 stopInscrieri,
