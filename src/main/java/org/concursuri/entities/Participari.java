@@ -16,6 +16,11 @@ public class Participari {
     @Column(name="descriere")
     private String descriere;
 
+
+
+    @Column(name="materiale", length = 255)
+    private String materiale;
+
     @Column(name = "profesor_coordonator")
     private String profesorCoordonator;
 
@@ -28,17 +33,18 @@ public class Participari {
     @Column(name="nota")
     private Integer nota;
 
-    public Participari(String lucrare, String descriere, String profesorCoordonator, Integer idu, Integer idc, Integer nota) {
+    public Participari(String lucrare, String descriere, String materiale, String profesorCoordonator, Integer idu, Integer idc) {
+        this(lucrare, descriere, materiale, profesorCoordonator, idu, idc, null);
+    }
+
+    public Participari(String lucrare, String descriere, String materiale, String profesorCoordonator, Integer idu, Integer idc, Integer nota) {
         this.lucrare = lucrare;
         this.descriere = descriere;
+        this.materiale = materiale;
         this.profesorCoordonator = profesorCoordonator;
         this.idu = idu;
         this.idc = idc;
         this.nota = nota;
-    }
-
-    public Participari(String lucrare, String descriere, String profesorCoordonator, Integer idu, Integer idc) {
-        this(lucrare, descriere, profesorCoordonator, idu, idc, null);
     }
 
     public Participari() {
@@ -98,5 +104,13 @@ public class Participari {
 
     public void setIdc(Integer idc) {
         this.idc = idc;
+    }
+
+    public String getMateriale() {
+        return materiale;
+    }
+
+    public void setMateriale(String materiale) {
+        this.materiale = materiale;
     }
 }

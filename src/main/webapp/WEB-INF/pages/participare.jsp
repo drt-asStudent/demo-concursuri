@@ -38,6 +38,14 @@
         </div>
 
         <div class="mb-3">
+            <label for="materiale" class="form-label">Materiale utilizate</label>
+            <textarea class="form-control" id="materiale" name="materiale" rows="3" required></textarea>
+            <div class="invalid-feedback">
+                Campul Materiale este obligatoriu.
+            </div>
+        </div>
+
+        <div class="mb-3">
             <label for="profesorCoordonator" class="form-label">Profesor coordonator</label>
             <input type="text" class="form-control" id="profesorCoordonator" name="profesorCoordonator" required>
             <div class="invalid-feedback">

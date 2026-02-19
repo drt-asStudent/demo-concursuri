@@ -20,10 +20,20 @@ public class ParticipariBean {
     @PersistenceContext
     EntityManager entityManager;
 
-    public void createParticipare(String lucrare, String descriere, String profesorCoordonator, Integer idu, Integer idc) {
+    public void createParticipare(String lucrare, String descriere, String materiale, String profesorCoordonator, Integer idu, Integer idc) {
+        LOG.info("Creating participare (nota=null)");
+        try {
+            Participari participare = new Participari(lucrare, descriere, materiale, profesorCoordonator, idu, idc);
+            entityManager.persist(participare);
+        } catch (Exception e) {
+            throw new EJBException(e);
+        }
+    }
+
+    public void createParticipare(String lucrare, String descriere, String materiale, String profesorCoordonator, Integer idu, Integer idc, Integer nota) {
         LOG.info("Creating participare");
         try {
-            Participari participare = new Participari(lucrare, descriere, profesorCoordonator, idu, idc);
+            Participari participare = new Participari(lucrare, descriere, materiale, profesorCoordonator, idu, idc, nota);
             entityManager.persist(participare);
         } catch (Exception e) {
             throw new EJBException(e);

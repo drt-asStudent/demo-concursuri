@@ -50,7 +50,7 @@
                             <td>
                                 <input form="notaForm_${participare.id}" type="number" name="nota"
                                        class="form-control form-control-sm"
-                                       min="1" max="10" step="1"
+                                       min="1" max="100" step="1"
                                        value="${participare.nota}">
                             </td>
                             <td class="text-center">
@@ -66,4 +66,5 @@
             </tbody>
         </table>
     </c:forEach>
+    <br><br><br>
 </t:pageTemplate>

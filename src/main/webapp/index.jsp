@@ -49,8 +49,9 @@
                 <c:forEach var="concursuri" items="${concursuri}">
                     <fmt:formatDate var="desfasYmd" value="${concursuri.dataDesfasurare}" pattern="yyyyMMdd"/>
                     <c:if test="${desfasYmd >= todayYmd}">
-                        <tr class="${isGuest ? 'clickable-row' : ''}"
-                            data-href="${isGuest ? pageContext.request.contextPath.concat('/Login') : ''}">
+                        <tr>
+                        <%--<tr class="${isGuest ? 'clickable-row' : ''}"--%>
+                        <%--   data-href="${isGuest ? pageContext.request.contextPath.concat('/Login') : ''}">--%>
                         <%-- <td class="text-center py-3">${concursuri.id}</td> --%>
                         <td class="py-3">${concursuri.nume}</td>
                         <td class="py-3" style="font-size: larger; font-weight: bold;"><fmt:formatDate value="${concursuri.dataDesfasurare}" pattern="EEE yyyy-MM-dd"/></td>
@@ -64,7 +65,9 @@
                         </td>
                         <td class="text-center py-3">
                             <a class="btn btn-sm btn-primary"
-                               href="${pageContext.request.contextPath}${isGuest ? '/Login' : '/DetaliiConcurs?idc='.concat(concursuri.id)}">
+                               <%-- href="${pageContext.request.contextPath}${isGuest ? '/Login' : '/DetaliiConcurs?idc='.concat(concursuri.id)}"> --%>
+                               href="${pageContext.request.contextPath}${'/DetaliiConcurs?idc='.concat(concursuri.id)}">
+
                                 DETAILS
                             </a>
                         </td>
@@ -77,6 +80,7 @@
     </div>
 </div>
 <br><br><br>
+    <%--
 <script type="text/javascript">
     document.addEventListener('click', function (e) {
         const row = e.target.closest('tr[data-href]');
@@ -91,4 +95,5 @@
         window.location.href = href;
     });
 </script>
+--%>
 </t:pageTemplate>

@@ -56,10 +56,11 @@ public class Participare extends HttpServlet {
 
         String lucrare = request.getParameter("lucrare");
         String descriere = request.getParameter("descriere");
+        String materiale = request.getParameter("materiale");
         String profesorCoordonator = request.getParameter("profesorCoordonator");
         Integer idc = Integer.valueOf(idcParam);
 
-        participariBean.createParticipare(lucrare, descriere, profesorCoordonator, idu, idc);
+        participariBean.createParticipare(lucrare, descriere, materiale, profesorCoordonator, idu, idc);
         response.sendRedirect(request.getContextPath() + "/Concursuri");
     }
 }

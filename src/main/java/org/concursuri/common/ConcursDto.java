@@ -12,6 +12,14 @@ public class ConcursDto {
     String competitionType;
     String nivel;
 
+    public int getMinPart() {
+        return minPart;
+    }
+
+    public void setMinPart(int minPart) {
+        this.minPart = minPart;
+    }
+
     int minPart;
     // seats (entity field is maxPart; JSP currently uses numarLocuri)
     int maxPart;
