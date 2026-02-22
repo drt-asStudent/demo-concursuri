@@ -80,6 +80,14 @@
 
                     <c:if test="${pageContext.request.isUserInRole('organizator')}">
 
+                        <!-- CONCURSURILE MELE -->
+                        <li>
+                            <a href="${pageContext.request.contextPath}/ConcursurileMele"
+                               class="nav-link ${activePage eq 'ConcursurileMele' ? 'active' : ''}">
+                                CONCURSURILE MELE
+                            </a>
+                        </li>
+
                         <!-- ADAUGARE CONCURS -->
                         <li>
                             <a href="${pageContext.request.contextPath}/AddConcurs"

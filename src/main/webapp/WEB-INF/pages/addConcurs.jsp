@@ -18,7 +18,9 @@
         </div>
     </c:if>
 
-    <form class="needs-validation" novalidate method="POST" action="${pageContext.request.contextPath}/AddConcurs">
+    <form class="needs-validation" novalidate method="POST"
+          action="${pageContext.request.contextPath}/AddConcurs"
+          enctype="multipart/form-data">
 
             <!-- 2. nume -->
         <div class="mb-3">
@@ -107,6 +109,17 @@
             </div>
         </div>
 
+        <!-- 10: poza (upload + preview) -->
+        <div class="mb-3">
+            <label for="poza" class="form-label">Poză (prezentare concurs)</label>
+            <input type="file" class="form-control" id="poza" name="poza" accept="image/*">
+            <div class="form-text">Alege o imagine (JPG/PNG/etc). Se va salva în tabelul <code>poze</code>.</div>
+
+            <div class="mt-3">
+                <img id="pozaPreview" alt="Preview poză" style="max-width: 320px; display: none;" class="img-thumbnail"/>
+            </div>
+        </div>
+
         <!-- 10. Save Button -->
         <button type="submit" class="btn btn-primary">Save</button>
 
@@ -135,6 +148,35 @@
             minEl.addEventListener('input', validateMinMax);
             maxEl.addEventListener('input', validateMinMax);
             validateMinMax();
+        })();
+    </script>
+
+    <script type="text/javascript">
+        (function () {
+            const input = document.getElementById('poza');
+            const img = document.getElementById('pozaPreview');
+            if (!input || !img) return;
+
+            input.addEventListener('change', function () {
+                const file = input.files && input.files[0];
+                if (!file) {
+                    img.style.display = 'none';
+                    img.removeAttribute('src');
+                    return;
+                }
+                if (!file.type || !file.type.startsWith('image/')) {
+                    img.style.display = 'none';
+                    img.removeAttribute('src');
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    img.src = e.target.result;
+                    img.style.display = 'inline-block';
+                };
+                reader.readAsDataURL(file);
+            });
         })();
     </script>
 

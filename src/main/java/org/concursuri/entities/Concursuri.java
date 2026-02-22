@@ -38,11 +38,15 @@ public class Concursuri {
 
     @Column(name = "min_part")
     private int minPart;
+
     @Column(name = "id_organizator")
     private Integer idOrganizator;
 
     @Column(name="max_part")
     private int maxPart;
+
+    @Column(name = "canceled")
+    private Integer canceled = 0;
 
 
     public int getMinPart() {
@@ -77,6 +81,15 @@ public class Concursuri {
         this.stopInscrieri = stopInscrieri;
         setCompetitionType(competitionType);
         this.nivel = nivel;
+        this.canceled = 0;
+    }
+
+    public Integer getCanceled() {
+        return canceled;
+    }
+
+    public void setCanceled(Integer canceled) {
+        this.canceled = canceled;
     }
 
     public String getCompetitionType() {
@@ -102,6 +115,7 @@ public class Concursuri {
     public Date getDataDesfasurare() {
         return dataDesfasurare;
     }
+
     public void setDataDesfasurare(Date dataDesfasurare) {
         this.dataDesfasurare = dataDesfasurare;
     }

@@ -5,7 +5,7 @@
   Time: 5:47 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"  %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -48,15 +48,20 @@
                         <td class="text-center">${concursuri.nivel}</td>
                         <td class="text-center">
                             <c:choose>
-                                <c:when test="${stopYmd >= todayYmd}">
+                                <c:when test="${stopYmd >= todayYmd and concursuri.registeredCount < concursuri.numarLocuri}">
                                     <a class="btn btn-sm btn-outline-primary"
                                        href="${pageContext.request.contextPath}/Participare?idc=${concursuri.id}">
                                         Participa
                                     </a>
                                 </c:when>
+                                <c:when test="${concursuri.registeredCount==concursuri.numarLocuri}">
+                                    <span class="text-danger">
+                                        Max. seats reached.
+                                    </span>
+                                </c:when>
                                 <c:otherwise>
                                     <span class="text-danger">
-                                        Registration closed
+                                        Registration closed.
                                     </span>
                                 </c:otherwise>
                             </c:choose>

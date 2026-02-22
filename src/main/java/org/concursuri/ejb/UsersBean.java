@@ -108,6 +108,9 @@ public class UsersBean {
         User user = entityManager.find(User.class, userId);
         if (user != null) {
             user.setAccepted(true);
+            Usergroups groupMapping = new Usergroups(user.getUsername(), user.getRol());
+            entityManager.persist(groupMapping);
+            LOG.info("Added user " + user.getUsername() + " to group " + user.getRol());
         }
     }
 

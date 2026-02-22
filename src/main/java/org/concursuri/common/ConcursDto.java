@@ -11,6 +11,7 @@ public class ConcursDto {
     Date stopInscrieri;
     String competitionType;
     String nivel;
+    Integer canceled;
 
     public int getMinPart() {
         return minPart;
@@ -24,7 +25,7 @@ public class ConcursDto {
     // seats (entity field is maxPart; JSP currently uses numarLocuri)
     int maxPart;
 
-    // how many registered (computed for index.jsp)
+    // how many registered (computed for home.jsp)
     Integer registeredCount;
 
     public String getNivel() {
@@ -40,7 +41,7 @@ public class ConcursDto {
     }
 
     public ConcursDto(Integer id, String nume, String detaliiConcurs, Date dataDesfasurare, Date startInscrieri, Date stopInscrieri,
-                      String competitionType, String nivel, int minPart, int maxPart) {
+                      String competitionType, String nivel, int minPart, int maxPart, Integer canceled) {
         this.id = id;
         this.nume = nume;
         this.detaliiConcurs = detaliiConcurs;
@@ -51,6 +52,7 @@ public class ConcursDto {
         this.nivel = nivel;
         this.minPart = minPart;
         this.maxPart = maxPart;
+        this.canceled = canceled;
     }
 
     public java.sql.Date getDataDesfasurare() {
@@ -88,5 +90,9 @@ public class ConcursDto {
 
     public void setRegisteredCount(Integer registeredCount) {
         this.registeredCount = registeredCount;
+    }
+
+    public Integer getCanceled() {
+        return canceled;
     }
 }

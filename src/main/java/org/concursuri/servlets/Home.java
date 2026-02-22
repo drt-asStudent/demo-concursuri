@@ -44,6 +44,6 @@ public class Home extends HttpServlet {
         }
 
         request.setAttribute("concursuri", concursuri);
-        request.getRequestDispatcher("/index.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/home.jsp").forward(request, response);
     }
 }

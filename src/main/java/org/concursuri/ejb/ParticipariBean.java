@@ -95,9 +95,9 @@ public class ParticipariBean {
         LOG.info("Find inscrieri for user: " + idu);
         try {
             TypedQuery<Object[]> query = entityManager.createQuery(
-                    "SELECT p.id, p.idc, c.nume, p.lucrare, p.descriere, p.profesorCoordonator " +
+                    "SELECT p.id, p.idc, c.nume, p.lucrare, p.descriere, p.profesorCoordonator, c.canceled " +
                             "FROM Participari p, Concursuri c " +
-                            "WHERE p.idu = :idu AND c.id = p.idc",
+                            "WHERE p.idu = :idu AND c.id = p.idc AND c.dataDesfasurare >= CURRENT_DATE",
                     Object[].class);
             query.setParameter("idu", idu);
 
@@ -110,7 +110,8 @@ public class ParticipariBean {
                         (String) r[2],
                         (String) r[3],
                         (String) r[4],
-                        (String) r[5]
+                        (String) r[5],
+                        (Integer) r[6]
                 ));
             }
             return result;

@@ -37,6 +37,14 @@ public class Login extends HttpServlet {
         UserDto user = usersBean.verifyUser(username, password);
 
         if (user != null && Boolean.TRUE.equals(user.getAccepted())) {
+            try {
+                request.login(username, password);
+            } catch (ServletException e) {
+                request.setAttribute("message", "Authentication failed");
+                request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
+                return;
+            }
+
             // Success! Store user info in the session
             request.getSession().setAttribute("user", user);
             response.sendRedirect(request.getContextPath() + "/");

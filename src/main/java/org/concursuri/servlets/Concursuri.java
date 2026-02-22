@@ -7,6 +7,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import org.concursuri.common.ConcursDto;
 import org.concursuri.ejb.ConcursBean;
+import org.concursuri.ejb.ParticipariBean;
 import org.concursuri.ejb.UsersBean;
 
 import java.io.IOException;
@@ -19,6 +20,9 @@ public class Concursuri extends HttpServlet {
 
     @Inject
     UsersBean usersBean;
+
+    @Inject
+    ParticipariBean participariBean;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,6 +37,14 @@ public class Concursuri extends HttpServlet {
         } else {
             concursuri = concursBean.findAllConcursuri();
         }
+        for (ConcursDto c : concursuri) {
+            if (c.getId() == null) {
+                continue;
+            }
+            int registered = participariBean.countParticipariByConcursId(c.getId());
+            c.setRegisteredCount(registered);
+        }
+
         request.setAttribute("concursuri", concursuri);
         request.getRequestDispatcher("/WEB-INF/pages/concursuri.jsp").forward(request,response);
     }

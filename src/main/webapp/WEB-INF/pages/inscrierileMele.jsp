@@ -5,7 +5,7 @@
   Time: 2:04 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -29,6 +29,7 @@
                     <th scope="col">Profesor coordonator</th>
                     <th scope="col" class="text-center">Modifică</th>
                     <th scope="col" class="text-center">MERITĂ?</th>
+                    <th scope="col" class="text-center">ISSUES</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -49,10 +50,15 @@
                                   style="display:inline;">
                                 <input type="hidden" name="id" value="${p.participareId}">
                                 <button type="submit" class="btn btn-sm btn-outline-danger"
-                                        onclick="return confirm('Sigur vrei să renunți la această înscriere?');">
+                                        onclick="return confirm('Sigur vrei sÄƒ renunÈ›i la aceastÄƒ Ã®nscriere?');">
                                     RENUNT
                                 </button>
                             </form>
+                        </td>
+                        <td class="text-center">
+                            <c:if test="${p.canceled == 1}">
+                                <span class="text-danger">CANCELED</span>
+                            </c:if>
                         </td>
                     </tr>
                 </c:forEach>
@@ -61,3 +67,4 @@
         </div>
     </c:if>
 </t:pageTemplate>
+

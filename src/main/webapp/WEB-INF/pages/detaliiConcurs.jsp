@@ -36,7 +36,7 @@
             </div>
 
             <div class="col-12 col-lg-5 text-lg-end">
-                <p>E NEVOIE DE AUTENTIFICARE PENTRU A SOLICITA PARTICIPAREA LA UN CONCURS.</p>
+                <p>E NEVOIE DE AUTENTIFICARE PENTRU A SOLICITA PARTICIPAREA LA UN CONCURS. TE ROG ÎNREGGISTREAZĂ-TE!</p>
             </div>
         </div>
 

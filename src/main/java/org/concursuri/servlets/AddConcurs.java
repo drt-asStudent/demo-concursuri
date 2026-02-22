@@ -6,19 +6,30 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import org.concursuri.common.ConcursDto;
 import org.concursuri.ejb.ConcursBean;
+import org.concursuri.ejb.PozeBean;
 import org.concursuri.ejb.UsersBean;
+import org.concursuri.entities.Poze;
+import java.io.InputStream;
 
 import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 
 @WebServlet(name = "AddConcurs", value = "/AddConcurs")
+@MultipartConfig(
+        fileSizeThreshold = 1024 * 1024,    // 1MB
+        maxFileSize = 10L * 1024 * 1024,    // 10MB
+        maxRequestSize = 12L * 1024 * 1024  // 12MB
+)
 public class AddConcurs extends HttpServlet {
     @Inject
     ConcursBean concursBean;
 
     @Inject
     UsersBean usersBean;
+
+    @Inject
+    PozeBean pozeBean;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -61,7 +72,7 @@ public class AddConcurs extends HttpServlet {
             return;
         }
 
-        concursBean.createConcurs(
+        Integer idConcurs = concursBean.createConcurs(
                 nume,
                 detaliiConcurs,
                 dataDesfasurare,
@@ -74,11 +85,29 @@ public class AddConcurs extends HttpServlet {
                 idOrganizator
         );
 
-        if (request.isUserInRole("student") || request.isUserInRole("external")) {
-            response.sendRedirect(request.getContextPath() + "/Concursuri");
-        } else {
-            response.sendRedirect(request.getContextPath() + "/Notare");
+        Part pozaPart = request.getPart("poza");
+        if (pozaPart != null && pozaPart.getSize() > 0) {
+            String contentType = pozaPart.getContentType();
+            if (contentType != null && contentType.startsWith("image/")) {
+                String submittedName = pozaPart.getSubmittedFileName();
+                try (InputStream in = pozaPart.getInputStream()) {
+                    byte[] bytes = in.readAllBytes();
+                    pozeBean.createPozaForConcurs(
+                            idConcurs,
+                            submittedName,
+                            contentType,
+                            bytes,
+                            Poze.POZE_INAINTE
+                    );
+                }
+            }
         }
+
+        //if (request.isUserInRole("student") || request.isUserInRole("external")) {
+            response.sendRedirect(request.getContextPath() + "/");
+        //} else {
+        //    response.sendRedirect(request.getContextPath() + "/Notare");
+        //}
     }
 }
 
