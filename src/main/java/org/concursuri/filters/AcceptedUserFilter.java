@@ -48,6 +48,10 @@ public class AcceptedUserFilter implements Filter {
                 httpResponse.sendRedirect(contextPath + "/Login?notAccepted=1");
                 return;
             }
+
+            if (httpRequest.getSession().getAttribute("user") == null) {
+                httpRequest.getSession().setAttribute("user", usersBean.findUserByUsername(username));
+            }
         }
 
         chain.doFilter(request, response);

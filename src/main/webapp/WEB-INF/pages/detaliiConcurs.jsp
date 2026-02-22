@@ -26,6 +26,16 @@
         .date-cell {
 
         }
+
+        /* Center specific numeric columns */
+        .details-table th:nth-child(5),
+        .details-table td:nth-child(5),
+        .details-table th:nth-child(6),
+        .details-table td:nth-child(6),
+        .details-table th:nth-child(7),
+        .details-table td:nth-child(7) {
+            text-align: center;
+        }
     </style>
 
     <div class="container mt-5">
@@ -48,7 +58,7 @@
 
         <c:if test="${not empty concurs}">
             <div class="table-responsive mb-5">
-                <table class="table table-bordered table-striped align-middle">
+                <table class="table table-bordered table-striped align-middle details-table">
                     <colgroup>
                         <col> <!-- Detalii concurs -->
                         <col class="date-col"> <!-- Data desfășurare -->

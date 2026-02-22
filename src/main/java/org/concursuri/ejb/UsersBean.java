@@ -185,5 +185,34 @@ public class UsersBean {
             throw new EJBException(e);
         }
     }
+
+    public UserDto findUserByUsername(String username) {
+        LOG.info("Finding user by username: " + username);
+        try {
+            TypedQuery<User> query = entityManager.createQuery(
+                    "SELECT u FROM User u WHERE u.username = :username",
+                    User.class);
+            query.setParameter("username", username);
+            List<User> users = query.getResultList();
+            if (users.isEmpty()) {
+                return null;
+            }
+            User user = users.get(0);
+            return new UserDto(
+                    user.getId(),
+                    user.getNume(),
+                    user.getPrenume(),
+                    user.geteMail(),
+                    user.getUsername(),
+                    user.getPassword(),
+                    user.getTelefon(),
+                    user.getRol(),
+                    user.getBday(),
+                    user.getAccepted()
+            );
+        } catch (Exception e) {
+            throw new EJBException(e);
+        }
+    }
 }
 

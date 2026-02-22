@@ -119,6 +119,11 @@
                 <!-- Login (adăugat corect ca și Cars) -->
 
                 <ul class="navbar-nav">
+                    <c:if test="${not empty sessionScope.user}">
+                        <li class="nav-item">
+                            <span style="font-size: x-large; color: red">Yo, <c:out value="${sessionScope.user.prenume}" /> <c:out value="${sessionScope.user.nume}!    " /></span>
+                        </li>
+                    </c:if>
                     <li class="nav-item">
 
                         <c:choose>

@@ -30,16 +30,6 @@ public class ParticipariBean {
         }
     }
 
-    public void createParticipare(String lucrare, String descriere, String materiale, String profesorCoordonator, Integer idu, Integer idc, Integer nota) {
-        LOG.info("Creating participare");
-        try {
-            Participari participare = new Participari(lucrare, descriere, materiale, profesorCoordonator, idu, idc, nota);
-            entityManager.persist(participare);
-        } catch (Exception e) {
-            throw new EJBException(e);
-        }
-    }
-
     public List<Participari> findParticipariByConcursId(Integer idc) {
         LOG.info("Find participari for concurs: " + idc);
         try {
@@ -126,8 +116,8 @@ public class ParticipariBean {
             TypedQuery<Participari> query = entityManager.createQuery(
                     "SELECT p FROM Participari p WHERE p.id = :pid AND p.idu = :idu",
                     Participari.class);
-            query.setParameter("pid", participareId);
-            query.setParameter("idu", idu);
+            query.setParameter("pid", participareId);  //id-ul participării
+            query.setParameter("idu", idu);            //id-ul utilizatorului
 
             List<Participari> results = query.getResultList();
             return results.isEmpty() ? null : results.get(0);
