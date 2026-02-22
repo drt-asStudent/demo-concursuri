@@ -126,6 +126,15 @@
                     </tbody>
                 </table>
             </div>
+
+            <c:if test="${not empty pozaPrezentare}">
+                <div class="table-responsive mt-3">
+                    <img src="${pageContext.request.contextPath}/Image?id=${pozaPrezentare.id}"
+                         alt="Prezentare concurs"
+                         class="img-fluid w-50"
+                         style="display:block;">
+                </div>
+            </c:if>
         </c:if>
     </div>
 <br><br><br>

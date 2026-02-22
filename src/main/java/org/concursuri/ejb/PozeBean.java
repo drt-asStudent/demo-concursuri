@@ -54,4 +54,23 @@ public class PozeBean {
             throw new jakarta.ejb.EJBException(e);
         }
     }
+
+    public java.util.List<PozeDto> findPozeByConcurs(Integer idConcurs) {
+        if (idConcurs == null) return java.util.List.of();
+        try {
+            TypedQuery<Poze> q = entityManager.createQuery(
+                    "SELECT p FROM Poze p WHERE p.idConcurs = :idc ORDER BY p.id DESC",
+                    Poze.class
+            );
+            q.setParameter("idc", idConcurs);
+            java.util.List<Poze> res = q.getResultList();
+            java.util.List<PozeDto> out = new java.util.ArrayList<>();
+            for (Poze p : res) {
+                out.add(new PozeDto(p.getId(), p.getFilename(), p.getFileType(), p.getFileContent(), p.getCategoria()));
+            }
+            return out;
+        } catch (Exception e) {
+            throw new jakarta.ejb.EJBException(e);
+        }
+    }
 }

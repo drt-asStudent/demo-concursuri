@@ -62,4 +62,38 @@ public class AcceptareLucrari extends HttpServlet {
 
         request.getRequestDispatcher("/WEB-INF/pages/acceptareLucrari.jsp").forward(request, response);
     }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Principal principal = request.getUserPrincipal();
+        if (principal == null) {
+            response.sendRedirect(request.getContextPath() + "/Login");
+            return;
+        }
+
+        if (!request.isUserInRole("organizator")) {
+            response.sendError(HttpServletResponse.SC_FORBIDDEN);
+            return;
+        }
+
+        Integer idOrganizator = usersBean.findUserIdByUsername(principal.getName());
+        if (idOrganizator == null) {
+            response.sendError(HttpServletResponse.SC_FORBIDDEN);
+            return;
+        }
+
+        String pidParam = request.getParameter("pid");
+        String accepted = request.getParameter("accepted");
+        if (pidParam != null && accepted != null && !accepted.isBlank()) {
+            try {
+                Integer pid = Integer.valueOf(pidParam);
+                if ("YES".equals(accepted) || "REJECT".equals(accepted)) {
+                    participariBean.updateAcceptedForOrganizator(pid, idOrganizator, accepted);
+                }
+            } catch (NumberFormatException ignored) {
+            }
+        }
+
+        response.sendRedirect(request.getContextPath() + "/AcceptareLucrari");
+    }
 }

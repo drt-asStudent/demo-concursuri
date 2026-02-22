@@ -16,7 +16,22 @@
     </c:if>
 
     <c:forEach var="concurs" items="${concursuri}">
-        <h2 class="h5 mt-4">${concurs.nume}</h2>
+        <div class="d-flex align-items-center justify-content-between mt-4 mb-2 flex-wrap gap-2">
+            <h2 class="h5 m-0">${concurs.nume}</h2>
+            <div class="d-flex gap-2">
+                <form method="post" action="${pageContext.request.contextPath}/Notare" enctype="multipart/form-data" class="d-flex gap-2 align-items-center">
+                    <input type="hidden" name="action" value="upload">
+                    <input type="hidden" name="idc" value="${concurs.id}">
+                    <input type="file" name="poze" multiple class="form-control form-control-sm" accept="image/*">
+                    <button type="submit" class="btn btn-sm btn-outline-primary">Add pictures</button>
+                </form>
+                <form method="post" action="${pageContext.request.contextPath}/Notare">
+                    <input type="hidden" name="action" value="close">
+                    <input type="hidden" name="idc" value="${concurs.id}">
+                    <button type="submit" class="btn btn-sm btn-outline-danger">Close competition</button>
+                </form>
+            </div>
+        </div>
         <table class="table table-bordered table-striped">
             <thead class="table-dark">
             <tr>
@@ -40,6 +55,7 @@
                             <td>
                                 <form id="notaForm_${participare.id}" method="post"
                                       action="${pageContext.request.contextPath}/Notare">
+                                    <input type="hidden" name="action" value="grade">
                                     <input type="hidden" name="idu" value="${participare.idu}">
                                     <input type="hidden" name="idc" value="${participare.idc}">
                                     <input type="hidden" name="lucrare" value="${participare.lucrare}">

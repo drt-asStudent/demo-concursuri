@@ -10,6 +10,27 @@ import java.io.Serializable;
 public record PozeDto(Integer id, String filename, String fileType, byte[] fileContent,
                       String categoria) implements Serializable {
 
+    // JSP EL expects JavaBean-style getters.
+    public Integer getId() {
+        return id;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public String getFileType() {
+        return fileType;
+    }
+
+    public byte[] getFileContent() {
+        return fileContent;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
     @Override
     public String toString() {
         return getClass().getSimpleName() + "(" +

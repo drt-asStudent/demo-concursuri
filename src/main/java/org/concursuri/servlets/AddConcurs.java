@@ -66,6 +66,23 @@ public class AddConcurs extends HttpServlet {
         int minPart = Integer.parseInt(request.getParameter("minPart"));
         int maxPart = Integer.parseInt(request.getParameter("maxPart"));
 
+        if (startInscrieri == null || stopInscrieri == null || dataDesfasurare == null ||
+                !stopInscrieri.after(startInscrieri) || !dataDesfasurare.after(stopInscrieri)) {
+            request.setAttribute("error", "Invalid dates: startInscrieri < stopInscrieri < dataDesfasurare is required.");
+            request.setAttribute("keepValues", true);
+            request.setAttribute("nume", nume);
+            request.setAttribute("detaliiConcurs", detaliiConcurs);
+            request.setAttribute("dataDesfasurare", request.getParameter("dataDesfasurare"));
+            request.setAttribute("startInscrieri", request.getParameter("startInscrieri"));
+            request.setAttribute("stopInscrieri", request.getParameter("stopInscrieri"));
+            request.setAttribute("competitionType", competitionType);
+            request.setAttribute("nivel", nivel);
+            request.setAttribute("minPart", request.getParameter("minPart"));
+            request.setAttribute("maxPart", request.getParameter("maxPart"));
+            request.getRequestDispatcher("/WEB-INF/pages/addConcurs.jsp").forward(request, response);
+            return;
+        }
+
         if (minPart > maxPart) {
             request.setAttribute("error", "Invalid participants limits: minPart must be <= maxPart.");
             request.getRequestDispatcher("/WEB-INF/pages/addConcurs.jsp").forward(request, response);
@@ -110,4 +127,3 @@ public class AddConcurs extends HttpServlet {
         //}
     }
 }
-

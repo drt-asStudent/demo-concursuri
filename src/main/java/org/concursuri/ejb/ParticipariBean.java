@@ -43,6 +43,32 @@ public class ParticipariBean {
         }
     }
 
+    public List<Participari> findParticipariByConcursIdOrderByNotaDesc(Integer idc) {
+        LOG.info("Find participari for concurs ordered by nota: " + idc);
+        try {
+            TypedQuery<Participari> query = entityManager.createQuery(
+                    "SELECT p FROM Participari p WHERE p.idc = :idc ORDER BY p.nota DESC",
+                    Participari.class);
+            query.setParameter("idc", idc);
+            return query.getResultList();
+        } catch (Exception e) {
+            throw new EJBException(e);
+        }
+    }
+
+    public List<Participari> findAcceptedParticipariByConcursId(Integer idc) {
+        LOG.info("Find accepted participari for concurs: " + idc);
+        try {
+            TypedQuery<Participari> query = entityManager.createQuery(
+                    "SELECT p FROM Participari p WHERE p.idc = :idc AND p.accepted = 'YES'",
+                    Participari.class);
+            query.setParameter("idc", idc);
+            return query.getResultList();
+        } catch (Exception e) {
+            throw new EJBException(e);
+        }
+    }
+
     public int countParticipariByConcursId(Integer idc) {
         LOG.info("Count participari for concurs: " + idc);
         try {
@@ -85,7 +111,7 @@ public class ParticipariBean {
         LOG.info("Find inscrieri for user: " + idu);
         try {
             TypedQuery<Object[]> query = entityManager.createQuery(
-                    "SELECT p.id, p.idc, c.nume, p.lucrare, p.descriere, p.profesorCoordonator, c.canceled " +
+                    "SELECT p.id, p.idc, c.nume, p.lucrare, p.descriere, p.profesorCoordonator, c.canceled, p.accepted " +
                             "FROM Participari p, Concursuri c " +
                             "WHERE p.idu = :idu AND c.id = p.idc AND c.dataDesfasurare >= CURRENT_DATE",
                     Object[].class);
@@ -94,17 +120,32 @@ public class ParticipariBean {
             List<Object[]> rows = query.getResultList();
             List<InscriereDto> result = new ArrayList<>();
             for (Object[] r : rows) {
-                result.add(new InscriereDto(
-                        (Integer) r[0],
-                        (Integer) r[1],
-                        (String) r[2],
-                        (String) r[3],
-                        (String) r[4],
-                        (String) r[5],
-                        (Integer) r[6]
+                result.add(new InscriereDto((Integer) r[0], (Integer) r[1], (String) r[2], (String) r[3], (String) r[4], (String) r[5], (Integer) r[6], (String) r[7]
                 ));
             }
             return result;
+        } catch (Exception e) {
+            throw new EJBException(e);
+        }
+    }
+
+    public boolean updateAcceptedForOrganizator(Integer participareId, Integer idOrganizator, String accepted) {
+        LOG.info("Updating accepted for participare: id=" + participareId + ", org=" + idOrganizator);
+        try {
+            TypedQuery<Participari> query = entityManager.createQuery(
+                    "SELECT p FROM Participari p, Concursuri c " +
+                            "WHERE p.id = :pid AND p.idc = c.id AND c.idOrganizator = :oid",
+                    Participari.class);
+            query.setParameter("pid", participareId);
+            query.setParameter("oid", idOrganizator);
+
+            List<Participari> results = query.getResultList();
+            if (results.isEmpty()) {
+                return false;
+            }
+            Participari p = results.get(0);
+            p.setAccepted(accepted);
+            return true;
         } catch (Exception e) {
             throw new EJBException(e);
         }
@@ -126,11 +167,7 @@ public class ParticipariBean {
         }
     }
 
-    public boolean updateParticipareFields(Integer participareId,
-                                           Integer idu,
-                                           String lucrare,
-                                           String descriere,
-                                           String profesorCoordonator) {
+    public boolean updateParticipareFields(Integer participareId,Integer idu, String lucrare, String descriere, String profesorCoordonator) {
         LOG.info("Update participare fields: participareId=" + participareId + ", idu=" + idu);
         try {
             Participari p = findParticipareByIdForUser(participareId, idu);

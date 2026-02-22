@@ -33,6 +33,9 @@ public class Participari {
     @Column(name="nota")
     private Integer nota;
 
+    @Column(name = "accepted", length = 16)
+    private String accepted = "NO";
+
     public Participari(String lucrare, String descriere, String materiale, String profesorCoordonator, Integer idu, Integer idc) {
         this(lucrare, descriere, materiale, profesorCoordonator, idu, idc, null);
     }
@@ -45,6 +48,7 @@ public class Participari {
         this.idu = idu;
         this.idc = idc;
         this.nota = nota;
+        this.accepted = "NO";
     }
 
     public Participari() {
@@ -112,5 +116,13 @@ public class Participari {
 
     public void setMateriale(String materiale) {
         this.materiale = materiale;
+    }
+
+    public String getAccepted() {
+        return accepted;
+    }
+
+    public void setAccepted(String accepted) {
+        this.accepted = accepted;
     }
 }

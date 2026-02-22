@@ -7,8 +7,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.concursuri.common.ConcursDto;
+import org.concursuri.common.PozeDto;
 import org.concursuri.ejb.ConcursBean;
 import org.concursuri.ejb.ParticipariBean;
+import org.concursuri.ejb.PozeBean;
 import org.concursuri.entities.Participari;
 
 import java.io.IOException;
@@ -22,6 +24,9 @@ public class DetaliiConcurs extends HttpServlet {
 
     @Inject
     ParticipariBean participariBean;
+
+    @Inject
+    PozeBean pozeBean;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -46,11 +51,14 @@ public class DetaliiConcurs extends HttpServlet {
         }
 
         int registeredCount = participariBean.countParticipariByConcursId(idc);
-        List<Participari> participari = participariBean.findParticipariByConcursId(idc);
+        List<Participari> participari = participariBean.findAcceptedParticipariByConcursId(idc);
+
+        PozeDto pozaPrezentare = pozeBean.findPrezentareByConcurs(idc);
 
         request.setAttribute("concurs", concurs);
         request.setAttribute("registeredCount", registeredCount);
         request.setAttribute("participari", participari);
+        request.setAttribute("pozaPrezentare", pozaPrezentare);
 
         request.getRequestDispatcher("/WEB-INF/pages/detaliiConcurs.jsp").forward(request, response);
     }

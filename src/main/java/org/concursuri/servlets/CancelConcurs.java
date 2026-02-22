@@ -6,16 +6,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.concursuri.common.ConcursDto;
 import org.concursuri.ejb.ConcursBean;
 import org.concursuri.ejb.UsersBean;
 
 import java.io.IOException;
 import java.security.Principal;
-import java.util.List;
 
-@WebServlet(name = "ConcursurileMele", value = "/ConcursurileMele")
-public class ConcursurileMele extends HttpServlet {
+@WebServlet(name = "CancelConcurs", value = "/CancelConcurs")
+public class CancelConcurs extends HttpServlet {
     @Inject
     ConcursBean concursBean;
 
@@ -23,7 +21,7 @@ public class ConcursurileMele extends HttpServlet {
     UsersBean usersBean;
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Principal principal = request.getUserPrincipal();
         if (principal == null) {
             response.sendRedirect(request.getContextPath() + "/Login");
@@ -35,20 +33,27 @@ public class ConcursurileMele extends HttpServlet {
             return;
         }
 
+        String idcParam = request.getParameter("idc");
+        Integer idc;
+        try {
+            idc = Integer.valueOf(idcParam);
+        } catch (Exception e) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
+
         Integer idOrganizator = usersBean.findUserIdByUsername(principal.getName());
         if (idOrganizator == null) {
             response.sendError(HttpServletResponse.SC_FORBIDDEN);
             return;
         }
 
-        List<ConcursDto> concursuri = concursBean.findFutureConcursuriByOrganizator(idOrganizator);
+        boolean canceled = concursBean.cancelConcursForOrganizator(idc, idOrganizator);
+        if (!canceled) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND);
+            return;
+        }
 
-        request.setAttribute("activePage", "ConcursurileMele");
-        request.setAttribute("concursuri", concursuri);
-        request.getRequestDispatcher("/WEB-INF/pages/concursurileMele.jsp").forward(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.sendRedirect(request.getContextPath() + "/ConcursurileMele");
     }
 }

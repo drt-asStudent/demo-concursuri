@@ -29,6 +29,7 @@
                     <th scope="col">Profesor coordonator</th>
                     <th scope="col" class="text-center">Modifică</th>
                     <th scope="col" class="text-center">MERITĂ?</th>
+                    <th scope="col" class="text-center">ACCEPTED</th>
                     <th scope="col" class="text-center">ISSUES</th>
                 </tr>
                 </thead>
@@ -56,6 +57,13 @@
                             </form>
                         </td>
                         <td class="text-center">
+                            <c:choose>
+                                <c:when test="${p.accepted == 'YES'}">YES</c:when>
+                                <c:when test="${p.accepted == 'REJECT'}"><span class="text-danger">REJECTED</span></c:when>
+                                <c:otherwise>NO</c:otherwise>
+                            </c:choose>
+                        </td>
+                        <td class="text-center">
                             <c:if test="${p.canceled == 1}">
                                 <span class="text-danger">CANCELED</span>
                             </c:if>
@@ -67,4 +75,3 @@
         </div>
     </c:if>
 </t:pageTemplate>
-

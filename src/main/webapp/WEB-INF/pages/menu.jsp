@@ -11,13 +11,22 @@
 
             <%--<c:if test="${pageContext.request.remoteUser == null}">--%>
                 <a class="navbar-brand" href="${pageContext.request.contextPath}">COMPETIȚII</a>
+
             <%--</c:if>--%>
 
-
-
             <div class="collapse navbar-collapse" id="navbarCollapse">
-
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <!-- Arhiva rezultate -->
+                    <li class="nav-item">
+                        <a class="nav-link
+                                   ${pageContext.request.requestURI.substring(pageContext.request.requestURI.lastIndexOf("/"))
+                                   eq '/arhivaRezultate.jsp' ? ' active' : ''}"
+                           aria-current="page"
+                           href="${pageContext.request.contextPath}/ArhivaRezultate">
+                            ARHIVA REZULTATE
+                        </a>
+                    </li>
+
 
                     <c:if test="${isAdmin}">
 

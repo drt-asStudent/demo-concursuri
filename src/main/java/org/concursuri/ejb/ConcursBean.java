@@ -88,6 +88,66 @@ public class ConcursBean {
         }
     }
 
+    public List<ConcursDto> findFutureConcursuriByOrganizator(Integer idOrganizator) {
+        LOG.info("Find future concursuri for organizator id: " + idOrganizator);
+        try {
+            TypedQuery<Concursuri> query = entityManager.createQuery(
+                    "SELECT c FROM Concursuri c " +
+                            "WHERE c.idOrganizator = :ido AND c.dataDesfasurare > CURRENT_DATE " +
+                            "ORDER BY c.dataDesfasurare ASC",
+                    Concursuri.class
+            );
+            query.setParameter("ido", idOrganizator);
+            return copyConcursToDTO(query.getResultList());
+        } catch (Exception e) {
+            throw new EJBException(e);
+        }
+    }
+
+    public List<ConcursDto> findConcursuriOverdueWithParticipari() {
+        LOG.info("Find overdue concursuri with participari");
+        try {
+            TypedQuery<Concursuri> query = entityManager.createQuery(
+                    "SELECT DISTINCT c FROM Concursuri c " +
+                            "WHERE c.dataDesfasurare <= CURRENT_DATE " +
+                            "AND (c.hover IS NULL OR c.hover <> 'over') " +
+                            "AND EXISTS (SELECT p FROM Participari p WHERE p.idc = c.id) " +
+                            "ORDER BY c.dataDesfasurare ASC",
+                    Concursuri.class
+            );
+            return copyConcursToDTO(query.getResultList());
+        } catch (Exception e) {
+            throw new EJBException(e);
+        }
+    }
+
+    public List<ConcursDto> findConcursuriClosed() {
+        LOG.info("Find closed concursuri");
+        try {
+            TypedQuery<Concursuri> query = entityManager.createQuery(
+                    "SELECT c FROM Concursuri c WHERE c.hover = 'over' ORDER BY c.dataDesfasurare DESC",
+                    Concursuri.class
+            );
+            return copyConcursToDTO(query.getResultList());
+        } catch (Exception e) {
+            throw new EJBException(e);
+        }
+    }
+
+    public boolean markConcursOver(Integer idc) {
+        LOG.info("Mark concurs over: idc=" + idc);
+        try {
+            Concursuri c = entityManager.find(Concursuri.class, idc);
+            if (c == null) {
+                return false;
+            }
+            c.setHover("over");
+            return true;
+        } catch (Exception e) {
+            throw new EJBException(e);
+        }
+    }
+
     private List<ConcursDto> copyConcursToDTO(List<Concursuri> concursuri) {
         List<ConcursDto> concursDtos = new ArrayList<>();
         for (Concursuri cx : concursuri) {

@@ -48,6 +48,8 @@ public class Concursuri {
     @Column(name = "canceled")
     private Integer canceled = 0;
 
+    @Column(name = "hover", length = 16)
+    private String hover = "NO";
 
     public int getMinPart() {
         return minPart;
@@ -82,6 +84,7 @@ public class Concursuri {
         setCompetitionType(competitionType);
         this.nivel = nivel;
         this.canceled = 0;
+        this.hover = "NO";
     }
 
     public Integer getCanceled() {
@@ -90,6 +93,14 @@ public class Concursuri {
 
     public void setCanceled(Integer canceled) {
         this.canceled = canceled;
+    }
+
+    public String getHover() {
+        return hover;
+    }
+
+    public void setHover(String hover) {
+        this.hover = hover;
     }
 
     public String getCompetitionType() {

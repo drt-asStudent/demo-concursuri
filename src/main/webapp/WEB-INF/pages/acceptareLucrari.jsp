@@ -59,6 +59,7 @@
                                             <th>Lucrare</th>
                                             <th>Descriere</th>
                                             <th>Profesor coordonator</th>
+                                            <th>ACCEPT?</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -67,6 +68,17 @@
                                                 <td><c:out value="${p.lucrare}" /></td>
                                                 <td><c:out value="${p.descriere}" /></td>
                                                 <td><c:out value="${p.profesorCoordonator}" /></td>
+                                                <td>
+                                                    <form method="post" action="${pageContext.request.contextPath}/AcceptareLucrari" class="d-flex gap-2">
+                                                        <input type="hidden" name="pid" value="${p.id}">
+                                                        <select name="accepted" class="form-select form-select-sm">
+                                                            <option value="" ${p.accepted == null || p.accepted == 'NO' ? 'selected' : ''}>select</option>
+                                                            <option value="YES" ${p.accepted == 'YES' ? 'selected' : ''}>YES</option>
+                                                            <option value="REJECT" ${p.accepted == 'REJECT' ? 'selected' : ''}>REJECT</option>
+                                                        </select>
+                                                        <button type="submit" class="btn btn-sm btn-primary" ${p.accepted == 'YES' ? 'disabled' : ''}>SAVE</button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                         </c:forEach>
                                         </tbody>
