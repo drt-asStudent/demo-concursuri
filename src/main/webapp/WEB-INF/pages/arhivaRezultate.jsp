@@ -17,51 +17,56 @@
     </c:if>
 
     <c:forEach var="concurs" items="${concursuri}">
-        <h2 class="h5 mt-4 mb-3">${concurs.nume}</h2>
+        <div class="border border-primary rounded p-3 mb-4">
+            <h2 class="h5 mt-0 mb-3">${concurs.nume}</h2>
 
-        <div class="table-responsive">
-            <table class="table table-bordered table-striped">
-                <thead class="table-dark">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Lucrare</th>
-                    <th scope="col">Descriere</th>
-                    <th scope="col">Nota</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:set var="participari" value="${participariByConcurs[concurs.id]}"/>
-                <c:choose>
-                    <c:when test="${empty participari}">
-                        <tr>
-                            <td colspan="4" class="text-center">Nu exista participari.</td>
-                        </tr>
-                    </c:when>
-                    <c:otherwise>
-                        <c:forEach var="p" items="${participari}" varStatus="st">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead class="table-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Lucrare</th>
+                        <th scope="col">Descriere</th>
+                        <%--<th scope="col">Nota</th>--%>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <c:set var="participari" value="${participariByConcurs[concurs.id]}"/>
+                    <c:choose>
+                        <c:when test="${empty participari}">
                             <tr>
-                                <td>${st.index + 1}</td>
-                                <td>${p.lucrare}</td>
-                                <td>${p.descriere}</td>
-                                <td>${p.nota}</td>
+                                <td colspan="4" class="text-center">Nu exista participari.</td>
                             </tr>
-                        </c:forEach>
-                    </c:otherwise>
-                </c:choose>
-                </tbody>
-            </table>
-        </div>
-
-        <c:set var="poze" value="${pozeByConcurs[concurs.id]}"/>
-        <c:if test="${not empty poze}">
-            <div class="d-flex flex-wrap gap-3 mt-3">
-                <c:forEach var="poza" items="${poze}">
-                    <img src="${pageContext.request.contextPath}/Image?id=${poza.id}"
-                         alt="Poza concurs"
-                         class="img-fluid"
-                         style="max-width: 100%; height: auto;">
-                </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <c:forEach var="p" items="${participari}" varStatus="st">
+                                <tr>
+                                    <td>${st.index + 1}</td>
+                                    <td>${p.lucrare}</td>
+                                    <td>${p.descriere}</td>
+                                    <%--<td>${p.nota}</td>--%>
+                                </tr>
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
+                    </tbody>
+                </table>
             </div>
-        </c:if>
+
+            <c:set var="poze" value="${pozeByConcurs[concurs.id]}"/>
+                <c:if test="${not empty poze}">
+                    <div class="d-flex flex-wrap gap-3 mt-3">
+                        <c:forEach var="poza" items="${poze}">
+                            <img src="${pageContext.request.contextPath}/Image?id=${poza.id}"
+                                 alt="Poza concurs"
+                                 class="img-fluid"
+                                 style="max-width: 100%; height: auto;">
+                        </c:forEach>
+                    </div>
+                </c:if>
+        </div>
+            <br><br><br>
     </c:forEach>
+
 </t:pageTemplate>

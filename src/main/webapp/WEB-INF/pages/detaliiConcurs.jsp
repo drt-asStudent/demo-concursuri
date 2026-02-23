@@ -98,9 +98,9 @@
                 </table>
             </div>
 
-            <h3 class="mb-3 text-secondary">LUCRĂRI ÎNSCRISE:</h3>
+            <h3 class="mb-3 text-secondary">PREZENTĂRI ÎNSCRISE:</h3>
             <div class="table-responsive">
-                <table class="table table-bordered table-striped table-hover align-middle">
+                <table id="myTable" class="table table-bordered table-striped table-hover align-middle">
                     <thead class="table-dark">
                     <tr>
                         <th>Lucrare</th>
@@ -127,6 +127,8 @@
                 </table>
             </div>
 
+            <button id="exportButton" type="button">Export Prezentări</button>
+
             <c:if test="${not empty pozaPrezentare}">
                 <div class="table-responsive mt-3">
                     <img src="${pageContext.request.contextPath}/Image?id=${pozaPrezentare.id}"
@@ -135,7 +137,72 @@
                          style="display:block;">
                 </div>
             </c:if>
+
+
         </c:if>
     </div>
+
+    <script>
+        const exportTableToCSV = (tableElement, filename = 'table.csv') => {
+            let csvContent = "\uFEFF"; // UTF-8 BOM for Excel
+
+            const rows = tableElement.querySelectorAll('tr');
+
+            rows.forEach(row => {
+                const rowText = row.innerText;
+                if (rowText) {
+                    const rowData = rowText.split('\t').map(value => {
+                        const cleaned = value.replace(/\s+/g, ' ').trim().replace(/"/g, '""');
+                        return '"' + cleaned + '"';
+                    });
+                    csvContent += rowData.join(',') + "\n";
+                    return;
+                }
+
+                const rowData = [];
+                const cells = row.querySelectorAll('th, td');
+
+                cells.forEach(cell => {
+                    const formField = cell.querySelector('input, textarea, select');
+                    let cellText = formField ? formField.value : cell.innerText;
+                    cellText = cellText.replace(/\s+/g, ' ').trim();
+                    cellText = cellText.replace(/"/g, '""');
+                    rowData.push('"' + cellText + '"');
+                });
+
+                csvContent += rowData.join(',') + "\n";
+            });
+
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+
+            document.body.appendChild(link);
+            link.click();
+
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const exportButton = document.getElementById('exportButton');
+            const tableToExport = document.getElementById('myTable');
+            if (!exportButton || !tableToExport) {
+                return;
+            }
+            exportButton.addEventListener('click', (event) => {
+                event.preventDefault();
+                if (tableToExport) {
+                    exportTableToCSV(tableToExport, 'my_table_data.csv');
+                } else {
+                    console.error('Could not find the table to export.');
+                }
+            });
+        });
+
+    </script>
 <br><br><br>
 </t:pageTemplate>

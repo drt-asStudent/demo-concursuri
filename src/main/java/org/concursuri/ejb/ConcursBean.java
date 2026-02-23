@@ -23,7 +23,8 @@ public class ConcursBean {
     public List<ConcursDto> findAllConcursuri() {
         LOG.info("Find all concursuri");
         try {
-            TypedQuery<Concursuri> query = entityManager.createQuery("SELECT c FROM Concursuri c order by c.dataDesfasurare ASC", Concursuri.class);
+            //TypedQuery<Concursuri> query = entityManager.createQuery("SELECT c FROM Concursuri c order by c.dataDesfasurare ASC", Concursuri.class);
+            TypedQuery<Concursuri> query = entityManager.createQuery("SELECT c FROM Concursuri c order by c.stopInscrieri ASC", Concursuri.class);
             List<Concursuri> concursuri = query.getResultList();
             return copyConcursToDTO(concursuri);
         } catch (Exception e) {
