@@ -90,6 +90,7 @@
                 <option value="" selected disabled>-- Select --</option>
                 <option value="external" ${keepValues && nivel == 'external' ? 'selected' : ''}>external</option>
                 <option value="ULBSibiu" ${keepValues && nivel == 'ULBSibiu' ? 'selected' : ''}>ULBSibiu</option>
+                <option value="deschis" ${keepValues && nivel == 'deschis' ? 'selected' : ''}>deschis</option>
             </select>
             <div class="invalid-feedback">
                 Câmpul nivel este obligatoriu.

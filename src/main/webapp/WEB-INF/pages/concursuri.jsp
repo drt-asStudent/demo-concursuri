@@ -34,10 +34,10 @@
             <fmt:formatDate var="todayYmd" value="${today}" pattern="yyyyMMdd"/>
 
             <c:forEach var="concursuri" items="${concursuri}">
-                <fmt:formatDate var="desfasYmd" value="${concursuri.dataDesfasurare}" pattern="yyyyMMdd"/>
+                <fmt:formatDate var="startYmd" value="${concursuri.startInscrieri}" pattern="yyyyMMdd"/>
                 <fmt:formatDate var="stopYmd" value="${concursuri.stopInscrieri}" pattern="yyyyMMdd"/>
 
-                <c:if test="${desfasYmd >= todayYmd}">
+                <c:if test="${startYmd <= todayYmd and stopYmd >= todayYmd}">
                     <tr>
 
                         <td>${concursuri.nume}</td>
