@@ -12,14 +12,17 @@ import org.concursuri.common.ConcursDto;
 import org.concursuri.ejb.ConcursBean;
 import org.concursuri.ejb.ParticipariBean;
 import org.concursuri.ejb.PozeBean;
+import org.concursuri.ejb.UsersBean;
 import org.concursuri.entities.Participari;
 import org.concursuri.entities.Poze;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @WebServlet(name = "Notare", value = "/Notare")
 @MultipartConfig(
@@ -37,6 +40,9 @@ public class Notare extends HttpServlet {
     @Inject
     PozeBean pozeBean;
 
+    @Inject
+    UsersBean usersBean;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<ConcursDto> concursuri = concursBean.findConcursuriOverdueWithParticipari();
@@ -44,8 +50,20 @@ public class Notare extends HttpServlet {
         for (ConcursDto concurs : concursuri) {
             participariByConcurs.put(concurs.getId(), participariBean.findParticipariByConcursId(concurs.getId()));
         }
+
+        Set<Integer> userIds = new LinkedHashSet<>();
+        for (List<Participari> participari : participariByConcurs.values()) {
+            for (Participari p : participari) {
+                if (p.getIdu() != null) {
+                    userIds.add(p.getIdu());
+                }
+            }
+        }
+        Map<Integer, String> userNamesById = usersBean.findUserNamesByIds(List.copyOf(userIds));
+
         request.setAttribute("concursuri", concursuri);
         request.setAttribute("participariByConcurs", participariByConcurs);
+        request.setAttribute("userNamesById", userNamesById);
         request.getRequestDispatcher("/WEB-INF/pages/notarea.jsp").forward(request, response);
     }
 

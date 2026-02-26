@@ -58,6 +58,7 @@
                                         <tr>
                                             <th>Lucrare</th>
                                             <th>Descriere</th>
+                                            <th>Participant</th>
                                             <th>Profesor coordonator</th>
                                             <th>ACCEPT?</th>
                                         </tr>
@@ -67,6 +68,7 @@
                                             <tr>
                                                 <td><c:out value="${p.lucrare}" /></td>
                                                 <td><c:out value="${p.descriere}" /></td>
+                                                <td><c:out value="${userNamesById[p.idu]}" /></td>
                                                 <td><c:out value="${p.profesorCoordonator}" /></td>
                                                 <td>
                                                     <form method="post" action="${pageContext.request.contextPath}/AcceptareLucrari" class="d-flex gap-2">

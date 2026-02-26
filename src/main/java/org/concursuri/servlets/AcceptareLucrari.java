@@ -15,8 +15,10 @@ import org.concursuri.entities.Participari;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @WebServlet(name = "AcceptareLucrari", value = "/AcceptareLucrari")
 public class AcceptareLucrari extends HttpServlet {
@@ -56,9 +58,20 @@ public class AcceptareLucrari extends HttpServlet {
             participariByConcurs.put(concurs.getId(), participariBean.findParticipariByConcursId(concurs.getId()));
         }
 
+        Set<Integer> userIds = new LinkedHashSet<>();
+        for (List<Participari> participari : participariByConcurs.values()) {
+            for (Participari p : participari) {
+                if (p.getIdu() != null) {
+                    userIds.add(p.getIdu());
+                }
+            }
+        }
+        Map<Integer, String> userNamesById = usersBean.findUserNamesByIds(List.copyOf(userIds));
+
         request.setAttribute("activePage", "AcceptareLucrari");
         request.setAttribute("concursuri", concursuri);
         request.setAttribute("participariByConcurs", participariByConcurs);
+        request.setAttribute("userNamesById", userNamesById);
 
         request.getRequestDispatcher("/WEB-INF/pages/acceptareLucrari.jsp").forward(request, response);
     }

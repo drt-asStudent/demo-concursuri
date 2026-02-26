@@ -37,6 +37,7 @@
             <tr>
                 <th scope="col">Lucrare</th>
                 <th scope="col">Descriere</th>
+                <th scope="col">Participant</th>
                 <th scope="col">Nota</th>
                 <th scope="col">Save</th>
             </tr>
@@ -63,6 +64,7 @@
                                 ${participare.lucrare}
                             </td>
                             <td>${participare.descriere}</td>
+                            <td>${userNamesById[participare.idu]}</td>
                             <td>
                                 <input form="notaForm_${participare.id}" type="number" name="nota"
                                        class="form-control form-control-sm"

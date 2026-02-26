@@ -31,6 +31,10 @@
         .app-footer {
             z-index: 1020;
         }
+
+        .table th {
+            vertical-align: middle;
+        }
     </style>
 </head>
 

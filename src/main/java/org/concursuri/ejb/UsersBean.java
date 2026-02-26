@@ -5,7 +5,9 @@ import jakarta.ejb.Stateless;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -181,6 +183,28 @@ public class UsersBean {
                 return null;
             }
             return users.get(0).getId();
+        } catch (Exception e) {
+            throw new EJBException(e);
+        }
+    }
+
+    public Map<Integer, String> findUserNamesByIds(List<Integer> ids) {
+        LOG.info("Finding user names by ids");
+        Map<Integer, String> result = new HashMap<>();
+        if (ids == null || ids.isEmpty()) {
+            return result;
+        }
+        try {
+            TypedQuery<User> query = entityManager.createQuery(
+                    "SELECT u FROM User u WHERE u.id IN :ids",
+                    User.class);
+            query.setParameter("ids", ids);
+            List<User> users = query.getResultList();
+            for (User user : users) {
+                String fullName = user.getPrenume() + " " + user.getNume();
+                result.put(user.getId(), fullName);
+            }
+            return result;
         } catch (Exception e) {
             throw new EJBException(e);
         }
