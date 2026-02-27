@@ -2,6 +2,7 @@ package org.concursuri.ejb;
 
 import jakarta.ejb.EJBException;
 import jakarta.ejb.Stateless;
+import jakarta.inject.Inject;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -22,6 +23,9 @@ public class UsersBean {
 
     @PersistenceContext
     EntityManager entityManager;
+
+    @Inject
+    PasswordBean passwordBean;
 
     public List<UserDto> findAllUsers() {
         LOG.info("Find accepted users");
@@ -84,7 +88,8 @@ public class UsersBean {
 
     public void createUser(String nume, String prenume, String eMail, String username, String password, String telefon, String rol, Date bday, Boolean accepted) {
         try {
-            User user = new User(nume, prenume, eMail, username, password, telefon, rol, bday, accepted);
+            String hashedPassword = passwordBean.convertToSha256(password);
+            User user = new User(nume, prenume, eMail, username, hashedPassword, telefon, rol, bday, accepted);
             entityManager.persist(user);
         } catch (Exception e) {
             LOG.severe("Error creating user: " + e.getMessage());
@@ -135,19 +140,37 @@ public class UsersBean {
     public UserDto verifyUser(String username, String password) {
         LOG.info("Verifying login for: " + username);
         try {
+            String hashedPassword = passwordBean.convertToSha256(password);
+            if (hashedPassword == null) {
+                return null;
+            }
             TypedQuery<User> query = entityManager.createQuery(
                     "SELECT u FROM User u WHERE u.username = :username AND u.password = :password",
                     User.class);
             query.setParameter("username", username);
-            query.setParameter("password", password);
+            query.setParameter("password", hashedPassword);
 
             List<User> users = query.getResultList();
+            User user = null;
             if (users.isEmpty()) {
-                return null;
+                // Fallback for legacy plaintext passwords; upgrade on successful match.
+                TypedQuery<User> legacyQuery = entityManager.createQuery(
+                        "SELECT u FROM User u WHERE u.username = :username AND u.password = :password",
+                        User.class);
+                legacyQuery.setParameter("username", username);
+                legacyQuery.setParameter("password", password);
+                List<User> legacyUsers = legacyQuery.getResultList();
+                if (!legacyUsers.isEmpty()) {
+                    user = legacyUsers.get(0);
+                    user.setPassword(hashedPassword);
+                } else {
+                    return null;
+                }
+            } else {
+                user = users.get(0);
             }
 
             // Return the first match (usernames should be unique)
-            User user = users.get(0);
             return new UserDto(user.getId(), user.getNume(), user.getPrenume(), user.geteMail(), user.getUsername(), user.getPassword(), user.getTelefon(), user.getRol(), user.getBday(), user.getAccepted());
         } catch (Exception e) {
             throw new EJBException(e);
