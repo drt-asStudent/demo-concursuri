@@ -127,7 +127,7 @@
                 </table>
             </div>
 
-            <button id="exportBtx" type="button">Export Prezentări</button>
+            <button id="exportBtx" data-export="csv" type="button">Export Prezentări</button>
 
             <c:if test="${not empty pozaPrezentare}">
                 <div class="table-responsive mt-3">
@@ -143,7 +143,7 @@
     </div>
 
 
-    <script src="${pageContext.request.contextPath}/scripts/export_json.js"></script>
+    <script src="${pageContext.request.contextPath}/scripts/export_tables.js"></script>
 
 <br><br><br>
 </t:pageTemplate>

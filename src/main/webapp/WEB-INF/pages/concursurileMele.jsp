@@ -21,7 +21,7 @@
 
     <c:if test="${not empty concursuri}">
         <div class="container">
-            <table id="myFixedTable" class="table table-bordered table-striped">
+            <table id="myTable" class="table table-bordered table-striped">
                 <thead class="table-dark">
                 <tr>
                     <th scope="col">Nume</th>
@@ -64,7 +64,7 @@
                 </tbody>
             </table>
         </div>
-        <button id="exportButton" type="button">Export Table</button>
+        <button id="exportButton" data-export="json" type="button">Export Table</button>
     </c:if>
-    <script src="${pageContext.request.contextPath}/scripts/export_json.js"></script>
+    <script src="${pageContext.request.contextPath}/scripts/export_tables.js"></script>
 </t:pageTemplate>

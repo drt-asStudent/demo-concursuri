@@ -62,7 +62,7 @@
             <label for="password" class="form-label">Parola</label>
             <input type="password" class="form-control" id="password" name="password" autocomplete="new-password" required>
             <div class="invalid-feedback">
-                Câmpul nume utilizator este obligatoriu.
+                Câmpul parola este obligatoriu.
             </div>
         </div>
 
